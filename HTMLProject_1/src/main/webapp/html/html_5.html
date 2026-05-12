@@ -1,0 +1,58 @@
+<!-- 
+    이미지 출력 : <img>
+    => <img src="" title="">  alt => title
+                   ======== 풍선 도움말  
+            ===== 출력할 이미지 파일 
+            | 이미지 : gif , png , jpg만 사용이 가능 
+            | 파일 , URL로 출력이 가능 
+            | 축소 / 확대 
+              --------- width,height지정 
+            | background => 위에 글자 출력이 가능 
+            | 저장된 파일 읽기 => 경로
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>멀티미디어:이미지출력</title>
+<style type="text/css">
+img {
+  width: 110px;
+  height: 250px;
+}
+</style>
+</head>
+<body>
+  <!--  img 태그는 inline => 옆으로 출력 독립태그 (닫는 태그가 없다) -->
+  <img src="m1.jpg" title="마이클">
+  <img src="m2.jpg">
+  <img src="m3.jpg">
+  <img src="m4.jpg">
+  
+  <img src="m5.jpg">
+  <img src="m6.jpg">
+  <img src="m7.jpg">
+  <img src="https://img.megabox.co.kr/SharedImg/2026/04/22/6gHJPXARID3rcYkJvCKfly7SkuiqTslt_420.jpg">
+  <hr>
+  <img src="image/m1.jpg">
+  <img src="image/m2.jpg">
+  <img src="image/m3.jpg">
+  <img src="image/m4.jpg">
+  <img src="image/m5.jpg">
+  <img src="image/m6.jpg">
+  <img src="image/m7.jpg">
+  <hr>
+  <!-- 가장 많이 사용된 상태 -->
+  <img src="../images/m8.jpg" onerror="this.src='no.png'">
+  <img src="../images/m2.jpg">
+  <img src="../images/m3.jpg">
+ 
+  <img src="../images/m4.jpg">
+  <img src="../images/m5.jpg">
+  <img src="../images/m6.jpg">
+  <img src="../images/m7.jpg">
+</body>
+</html>
+
+
+

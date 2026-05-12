@@ -1,0 +1,120 @@
+<!--  05.07 HTML 정리  -->
+<!-- 
+    1. HTML 기본 개념 
+       = 웹 페이지의 구조를 만드는 마크업 언어 
+       = 브라우저에서 HTML을 해석헤서 화면에 렌더링 (화면 출력)
+       = 확장자 : .html , .htm
+    2. 웹 / 인터넷 
+       =웹 : 정보를 보여주는 HTML 기반의 서비스 
+       =인터넷 : 네트워크 활용한 이동 장소 (HTML)
+    3. 구성 요소 (역할) 
+       HTML / CSS : 화면 UI 
+       JavaScript : 브라우저에 사용자 요청 처리  ==> PR
+       ------------------ Front 
+       Java : 브라우저 요청한 내용 처리 , 데이터 관리 
+       Oracle : 데이터 저장 장소 
+       ------------------ Back
+       -------------------------------- + 통합 : Spring
+    4. HTML 문서 구조 
+       <!DOCTYPE html> : HTML의 버전에 해당되는 문서 읽기 (5버전)
+       <html> : 문서의 시작 
+         <head>
+           설정 파일 
+           <link> : CSS파일 읽기 => 공통으로 사용되는 CSS가 있는 경우 (파일)
+           <title> : 브라우저 제목 설정 
+           <script> : 자바스크립트 
+           <style> : 인라인 CSS => 파일 한개에만 제어 
+           <meta> : 한글 변환 => UTF-8, EUC-KR
+           => 브라우저에 출력하지 않는다 
+         </head>
+         <body>
+           => 브라우저에 출력이 가능 태그 
+         </body>
+       </html> : 문서의 종료
+    
+       DOCTYPE : HTML버전 선언 
+       html : 문서 루트 
+       head : 문서 정보 
+       body : 실제 콘테츠
+       
+       --------------------------
+       body안에 출력 => 브라우저에 출력 
+       1) 텍스트 관련 
+          제목 : h1~h6 => block => 다음 줄에 출력 , 굵은 글씨체 
+                -----
+          문자제어 : <b> , <strong> , <font> , <sup>
+                                             | 위첨자 
+                                    | 색상 , 글꼴 
+                         | 강조체 
+                   | bold 
+          문단제어 : <br> , <p> , <hr> , <pre>
+                                       | 있는 그대로 
+                                | 수평선 
+                         | 단락 나누기 
+                   | 다음줄 출력  
+       2) 멀티미디어 
+          이미지 : <img src="이미지파일명" title="소개">
+          동영상 : <embed src="동영상" width="" height="">
+          다른 파일 : <iframe src="다른 파일명" width="" height="">
+          
+      ----------------------------------------------------------
+       목록 출력 
+         ***= ul : 메뉴 
+         = ol
+         ***= dl : 상세보기 
+         ***= table  : 일반 목록 : 게시판 
+       입력창 
+         <input>
+         -------
+             <input type="">
+                          | button , submit , reset ,image 
+                          | text , password 
+                          | date , week 
+                          | number 
+                          | hidden 
+                          | file  
+         <textarea>
+         <select> 
+         <button>
+       분할 태그 
+         가로 분할 : <span>
+         세로 분할 : <div> 
+         
+     -------------------------------------------
+     프로젝트 폴더 : 영문 => 한글사용하면 깨진다
+        |
+      Java Resource
+        |
+        src/main/java 
+     ------------------------------ 자바 저장 
+           단위 : package단위 => 일반 자바와 동일
+                 => DAO / VO 
+      src
+       |
+      main
+       |
+      webapp ------- 웹 저장 
+       |  -------------------- 단위 폴더 : html,js,css,image파일
+      WEB-INF
+       |
+      lib ----- 라이브러리 저장 (jar)
+      
+      default 파일 
+        = index.html / index.jsp => 파일명 없이 실행이 가능 
+      
+      *** 구분자 => 파일명 => 서버로 전송시에 반드시 파일명 전송    
+      
+      => HTML / CSS
+         | JavaScript 
+         | 자바연동 === 오라클 연동 => JSP => HTML로 되어 있다 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!-- 
+     문자 제어 태그 
+     small / address / ***sup / sub / b / em / ***strong / i 
+     mark / marquee / blockquote / del / ins / ***font
+     
+     <small></small> : 작은 글자 출력 (부제목)
+     <address></address> : 주소 출력 => 이태릭체 
+     <sup></sup> 위첨자 : 새글 등록 
+     <b></b> : bold => 두꺼운 글자체 
+     <sub></sub> : 아래첨자 => 주
+     <em></em> : 강조체 => <strong></strong> 
+     <i></i> :이태릭 
+     <mark></mark> : 형광색 출력 
+     <marquee></marquee> : 전광판 효과     
+     
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <!--  1. small : 작은 글자 출력 (부제목) : inline 
+        주석 : ctrl+shift+/ 주석달기 
+              ctrl+shift+\ 주석풀기 \
+        &lt; => <
+        &gt; => >
+        &nbsp; => " " 공백 출력 
+        &raquo; => >>
+        &laquo; => <<    
+  -->
+  <h3>&lt;small&gt;태그 사용법</h3>
+  <p>HTML 기초</p>
+  <small style="color:gray">웹 기초 과정</small>
+  <!-- <small style="color:gray">웹 기초 과정</small> -->
+  <h3>&laquo;address&raquo; : 주소 (필기체)</h3>
+  <p>주소</p>
+  <address>서울시 마포구 동교동 쌍용 교육 센터</address>
+  <!-- <sup> : 위첨자 : 새글  -->
+  <p>&lt;sup&gt;</p>
+  지금은 HTML 기초 태그 사용법 배우기 <sup><img src="new.gif"></sup>
+  <br>
+  지금은 HTML 기초 태그 사용법 배우기 <sub><img src="new.gif"></sub>
+  <br>
+  X<sup>2</sup>  H<sub>2</sub>O
+  <!-- <b> : 굵은 글씨체 (강조) : bold -->
+  Hello HTML &nbsp; <b>Hello HTML</b>
+  <p>&lt;em,strong&gt; : 강조체 : inline </p>
+  <em>HTML은 태그의 출력 내용</em><br>
+  <strong>HTML은 CSS+JavaScript</strong>
+  <p>&lt;i,mark&gt; : 이태릭(인용),형광색</p>
+  <i>Hello HTML</i><br>
+  <mark>Hello HTML</mark><br>
+  <p>&lt;marquee&gt; : 전광판 효과</p>
+  <marquee>Hello HTML</marquee><br>
+  <p>&lt;del,ins&gt; : 중간에 밑줄 , 밑줄 </p>
+  <del>60,000원</del><br>
+  <ins>30,000원</ins>
+  <p>&lt;blockquote&gt; : 들여쓰기 (인용) : 영화 줄거리 : 대사</p>
+  <blockquote>Hello HTML</blockquote><br>
+  <p>자주 사용하는 태그: &lt;font&gt; 글꼴 / 글자 크기조절 / 색상</p>
+  <font color="red" face="궁서체">Hello HTML</font>
+  <p>
+    주로 사용되는 태그 <br>
+    문자 관련 태그 : sup , <b>font</b> , b , strong <br>
+    hr , <b>br</b> , <b>p</b> , <b>pre</b> , <b>h1,h3</b>
+  </p>
+  <b>HTML/CSS : 화면 UI를 직접 만들어야 기억</b>
+</body>
+</html>

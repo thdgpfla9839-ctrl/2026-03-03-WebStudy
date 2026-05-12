@@ -1,0 +1,104 @@
+<!-- 
+       Chapter 2장 => 51page 
+       HTML 구조 + 작성법 
+       ---- 인터넷을 통해서 데이터를 전하는 파일 
+       => 브라우저에서는 ML인 경우에만 사용이 가능 
+                     --- HTML / XML / WML / HDML / VML ...
+                         ----  -----
+                               | 설정 파일 (MyBatis , Spring...)
+                                                   = Spring-Boot 
+                               |         = Annotaton 
+                         | 브라우저 화면 출력 
+          => SpringFramework : 유지보수 => 2주 
+       => HTML의 기본 용어 
+          --------------
+          태그 + 속성 
+          <meta charset="UTF-8">
+          ----- -------
+           태그    속성  => ML(MarkUp Lang) 
+           ---    ---
+                  | 멤버변수 => 사용자 정의가 있다 (데이터를 저장) 
+                    
+           | 클래스 => 사용자 정의가 없다 
+          
+          1) 태그의 종류 
+             여는 태그 : <태그>
+             닫는 태그 : </태그>
+             ----------------------- 동시에 사용 
+                       <태그>출력 데이터</태그>
+             독립 태그 : <태그> , <태그/>
+                       = img , input , br , p ...
+            -----------------------------------------
+            1. 값을 가지고 있는 태그
+               <h1>출력값</h1> 
+            2. 값이 없는 태그
+               <br>,<hr> .... 
+            3. 속성에 값이 있는 태그
+               <img src="이미지 파일명">
+               <a href="이동할 파일">
+         2) 단점 
+            인터프리터 : 한줄씩 번역 
+            컴파일이 없어서 에러가 없다 => 개발자 도구 => console
+         3) 태그와 속성은 소문자로만 사용한다 (HTML4에서 대소문자) 
+        
+         4) 태그 / 속성
+                  | 어떤 값을 가지고 있는지 
+            | 어떤 내용을 출력 (화면 출력 확인)
+         5) inline / block
+                     | 세로 출력 : System.out.println() 
+            | 가로 출력 : System.out.print()
+    태그 : 문자와 관련된 태그
+          --------------
+          1. 타이틀 (제목) 
+             h1 ~ h6 태그 => h1 / h3
+             -------- 작아진다 
+             -------- bold (두꺼운 글자)
+             -------- 반드시 열고 닫기를 한다 
+             -------- 값을 가비고 있는 태그 
+             -------- <h1>값</h1>
+             
+     구조 
+        <!DOCTYPE html> : HTML 5버전에 해당되는 태그/속성을 읽어 온다 
+                          loose.dtd
+		<html> : HTML 문서의 시작 => 생략이 가능 
+			<head> : 설정 파일 
+				<meta charset="UTF-8"> : 검색어 , 화면 크기 , 한글 설정 
+				<title>Insert title here</title>
+				  | 브라우저의 이름 부여 
+				<script> <style> <link>
+				| 화면 출력이 안된다 
+			</head>
+			<body>
+			   화면 출력하는 태그 
+			   => static => 코딩한 순서로 출력 
+			   => 문자와 관련 태그 
+			   => 멀티미디어 
+			   => 이동 태그 
+			   => 입력 태그 
+			   => 목록 태그 
+			   => div / span 
+			      ----------- JPanel => 카드 
+			   => 기타 
+			   => 시멘텍 태그 
+			</body>
+		</html>
+		
+		*** 들여쓰기 , 모든 태그 / 속성 => 소문자 사용  
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- CSS / JavaScript  -->
+</head>
+<body>
+  <!--  화면에 출력 heading : 제목  -->
+  <h1>Hello HTML!!</h1>
+  <h2>Hello HTML!!</h2>
+  <h3>Hello HTML!!</h3>
+  <h4>Hello HTML!!</h4>
+  <h5>Hello HTML!!</h5>
+  Hello HTML!!
+</body>
+</html>
