@@ -1,0 +1,57 @@
+<!-- 
+   멀티미디어 태그 ( <img> , <embed> , <iframe> )
+                 => 시멘텍 태그 : <video><audio> => 실제 파일 존재 
+                 => Youtube => key를 이용해서 실행 
+                 => 동영상 => 읽기 / 검색 => Youtube api key 
+     1) <img> : 이미지 출력 
+                => 상품 목록 / 썸네일 / 상세 보기 
+        주요 속성 
+        1. src : 출력할 이미지 파일명 
+        2. title / alt : 풍선 도움말 (부가적 설명) 
+        3. width : 축소 / 확대 
+        4. height 
+        
+        사용법 
+        <img src="출력할 이미지" title="부가 설명"> 
+                 -----------
+                 html파일과 동일한 위치 => 파일명만 설정
+                 html파일과 다른 폴더에 있는 경우 => ../폴더/파일명 
+        <img src="출력할 이미지" title="부가 설명"
+          onerror="this.src='파일명'"
+        > 
+        
+        ------------
+          a.html 
+          a.jpg    ==> 파일명만 
+        ------------
+        
+        ------------
+          a.html
+          
+          ----image----
+             a.jpg          ==> image/a.jpg
+          -------------
+        
+        ------------
+        
+        -----image-------
+             a.jpg
+        -----------------
+        
+        ------html------
+            a/html         ==> ../image/a.jpg
+        ----------------       --- change directory 
+                     ==> 리눅스 명령어 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <img src="m1.jpg" title="영화명:마이클" width=150 height="250"><br>
+  <img src="m1.jpg" title="영화명:마이클" width="50%">
+  <!--  height는 자동 지정 -->
+</body>
+</html>

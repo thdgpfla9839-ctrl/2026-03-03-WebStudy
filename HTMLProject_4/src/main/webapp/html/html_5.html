@@ -1,0 +1,178 @@
+<!-- 
+     입력 관련 태그 => 97page
+     <input> <textarea> <select> 
+     
+     <input> 
+       = 속성 
+         type
+          = text : 한줄 문자열 => ID,이름,검색
+          = password : 비밀번호 입력 
+          = file : 파일 업로드 
+          = hidden : 사용자는 볼 수 없게 감추는 태그
+          = date : 달력 
+          = number : 숫자만 입력 
+          = range : 슬라이더바 
+          = button : 일반 버튼 => 반드시 자바스크립트 이용
+          = radio : => 라디오버튼은 반드시 그룹 => 속성 (name)
+          = checkbox => 여러개 동시에 선택 
+          = submit : 전송 버튼 
+             => HTML => 값 입력 => Java => 오라클 => 화면 이동 
+                                  ----sendRedirect("이동파일")
+                               예) 회원가입 = 메인 
+                                  글쓰기 = 게시판 목록...
+          = image : submit버튼 (전송)
+         name => Java로 값 전송시에 사용 
+         size
+         id,class => CSS/JavaScript
+         
+         <button> : submit버튼 / 일반버튼 
+         <textarea> : 여러줄 입력 
+         <select> : 콤보박스 
+            |
+          <option>출력할 내용물 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<style type="text/css">
+h3 {
+   text-align: center;
+}
+table {
+  margin: 0px auto; /*가운데 정렬*/
+}
+</style>
+</head>
+<body>
+  <h3>회원 가입</h3>
+  <form>
+  <!--  width => style을 이용한다 -->
+  <table id="table_content" style="width:600px">
+    <tbody>
+      <tr>
+        <th width=15%>ID</th>
+        <td width=85%>
+         <input type=text size=20><input type="button" value="중복체크">
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>비밀번호</th>
+        <td width=85%>
+          <input type=password size=20>
+          <input type=password size=20 placeholder="재입력">
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>이름</th>
+        <td width=85%>
+          <input type=text size=20>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>성별</th>
+        <td width=85%>
+          <input type="radio" name=sex checked>남자
+          <input type="radio" name=sex>여자
+        </td>
+      </tr>
+      <tr>
+        <!-- 수량  -->
+        <th width=15%>나이</th>
+        <td width=85%>
+          <input type="number" min="10" max="90">
+        </td>
+      </tr>
+      <tr>
+        <!-- 수량  -->
+        <th width=15%>가격대</th>
+        <td width=85%>
+          <input type="range" min="10000" max="100000">
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>생년월일</th>
+        <td width=85%>
+          <input type=date size=30>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>이메일</th>
+        <td width=85%>
+          <input type=text size=45>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>우편번호</th>
+        <td width=85%>
+          <input type=text size=7 readonly><!-- readonly: 읽기 전용 -->
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>주소</th>
+        <td width=85%>
+          <input type=text size=45 readonly>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>상세주소</th>
+        <td width=85%>
+          <input type=text size=45>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>전화</th>
+        <td width=85%>
+          <select>
+           <option>010</option>
+          </select>
+          &nbsp;
+          <input type=text size=15>
+        </td>
+      </tr>
+      <tr>
+         <th width=15%>취미</th>
+         <td width="85%">
+          <input type="checkbox">여행
+          <input type="checkbox">낚시
+          <input type="checkbox">게임
+          <input type="checkbox">독서
+          <input type="checkbox">맛집
+         </td>
+      </tr>
+      <tr>
+        <th width=15%>사진</th>
+        <td width="85%">
+         <input type=file size=30>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>보안</th>
+        <td width="85%">
+         <input type=hidden size=30>
+        </td>
+      </tr>
+      <tr>
+        <th width=15%>소개</th>
+        <td width="85%">
+         <!-- textarea : 여러 줄 입력 , rows : height , cols : width -->
+         <textarea rows="10" cols="45"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <!--  th+td => colspan=2 -->
+        <td colspan="2" align="center">
+          <input type=submit value="회원가입">
+          <input type=button value="취소">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </form>
+</body>
+</html>
+
+
+

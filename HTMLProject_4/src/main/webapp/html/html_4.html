@@ -1,0 +1,139 @@
+<!-- 
+    문자 태그 
+      => <h1>,<h3> , <br> , <p> , <sup> , <pre>
+                     ----------   -----   ------
+                                          | 상세보기 => 내용
+                     카드 : 조합     새글 입력
+         --------- 제목 
+    멀티미디어 
+      => <img> , <embed> 
+                 -------- 동영상 출력
+         ----- 목록 , 상세보기 
+    링크 
+      => <a> 
+         ---- 화면 이동 
+    목록 
+      => <ul> , <table> , <dl>
+         ----   -------   ----
+         | 메뉴  | 목록     |상세보기
+      
+    입력 
+      => <input> , <select> , <textarea> 
+         => 검색창 / 회원가입 / 로그인 
+    분할 
+      => <div> , <span> 
+         => 전체 화면 분할 / 카드 => CSS가 존재 
+    ==> static : 소스 순서로 출력 => 배치 (CSS) 
+    
+        1. 목록 출력 (79page)
+           <ul> : unorder list (순서가 없다) 
+            |
+           <li> : 출력할 내용물
+           
+           <ol> : order list (순서가 있다)
+            |
+           <li>
+           
+           <table> : row/column
+             |
+            <tr>
+             |
+        ------------------
+        |                |
+       <th>             <td>
+       ----- 제목        ----- 실제 데이터 
+       
+           <dl> : 데이터 리스트 
+            |
+           <dt> : 제목(라벨)
+           <dd> : 제목에 대한 설명 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <ul>
+    <li>홈</li>
+    <li>회원가입</li>
+    <li>맛집</li>
+    <li>레시피</li>
+    <li>여행</li>
+    <li>커뮤니티</li>
+  </ul>
+  <hr>
+  <ol>
+    <li>홈</li>
+    <li>회원가입</li>
+    <li>맛집</li>
+    <li>레시피</li>
+    <li>여행</li>
+    <li>커뮤니티</li>
+  </ol>
+  <hr>
+  <dl>
+    <dt>Java</dt>
+    <dd>사용자 요청 처리 , 데이터 관리</dd>
+    <dt>오라클</dt>
+    <dd>공유할 데이터를 저장</dd>
+    <dt>HTML/CSS</dt>
+    <dd>사용자 요청에 대한 화면 UI</dd>
+    <dt>JavaScript</dt>
+    <dd>사용자 요청에 대한 자체 처리(브라우저)</dd>
+    <dt>JSP</dt>
+    <dd>동적페이지: 자동으로 Java = HTML 변환</dd>
+    <dt>Spring</dt>
+    <dd>웹 동적에 대한 기본 틀을 만들어서 사용</dd>
+    <dt>*****Spring-Boot</dt>
+    <dd>Spring보다 단순하게</dd>
+    <dt>*****VueJS/React</dt>
+    <dd>화면 출력 속도의 최적화</dd>
+    <dt>AWS</dt>
+    <dd>서버를 빌려서 사용</dd>
+    <dt>CI/CD</dt>
+    <dd>지속적인 통합 / 지속적인 배포</dd>
+    <dt>GitHub : Actions</dt>
+    <dd>Git만 이용</dd>
+    <dt>*****Docker</dt>
+    <dd>환경 설정을 동일</dd>
+    <dt>DockerHub</dt>
+    <dd>저장하는 장소</dd>
+    <dt>Docker-Compose</dt>
+    <dd>여러개 서버를 동시에</dd>
+    <dt>Jinkins</dt>
+    <dd>CI/CD 관리</dd>
+    <dt>쿠바네티스</dt>
+    <dd>MSA사용</dd>
+  </dl>
+  <hr>
+  <table border=1 bordercolor="black">
+    <tr>
+     <th>학번</th>
+     <th>이름</th>
+     <th>국어</th>
+     <th>영어</th>
+     <th>수학</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>홍길동</td>
+      <td>90</td>
+      <td>90</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>홍길동</td>
+      <td>90</td>
+      <td>90</td>
+      <td>90</td>
+    </tr>
+    <!-- 
+        세로 통합 : rowspan
+        가로 통합 : colspan
+     -->
+  </table>
+</body>
+</html>
