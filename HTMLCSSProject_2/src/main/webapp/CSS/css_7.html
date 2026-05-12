@@ -1,0 +1,40 @@
+<!-- 
+    문자 선택자 :
+               1) :before
+               2) :after
+            => ex) 새글 / 특가상품 / 신상품 등에 사용      
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+li.new::after {
+	content: "new";
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: red;
+}
+
+li.new::before {
+	content: "new"; /* content는 문자열 */
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: blue;
+}
+</style>
+</head>
+<body>
+  <ul>
+      <li class="new">상품 1</li> 
+      <li class="new1">상품 2</li> 
+      <li>상품 3</li> 
+      <li>상품 4</li> 
+      <li class="new">상품 5</li> 
+   </ul>
+</body>
+</html>

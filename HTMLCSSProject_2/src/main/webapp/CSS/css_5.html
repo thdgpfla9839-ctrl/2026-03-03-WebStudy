@@ -1,0 +1,62 @@
+<!-- 
+    1. 구조 선택자 :
+                  1) :first-child
+                  2) :last-child
+                  3) :nth-child(수열)
+                  => 메뉴 잡을 때 자주 사용
+ -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+li:first-child{
+	color: green;
+	background: yellow;
+}
+
+li:last-child{
+	color: red;
+	background: yellow;
+}
+/* 목록 출력 : table, ul, dl에서 자주 사용 */
+li:nth-child(1){
+	color: blue;
+}
+
+li:nth-child(2){
+	color: pink;
+}
+
+li:nth-child(3){
+	color: orange;
+}
+
+/* 짝수만 여러개 가져올 때 */
+li:nth-child(2n) {
+	background: fuchsia; 
+}
+
+/* 홀수만 여러개 가져올 때*/
+li:nth-child(2n+1) {
+	background: maroon; 
+}
+/* 태그의 번호는 1부터 시작된다 */
+</style>
+</head>
+<body>
+  <ul>
+      <!-- 목록 출력  -->
+     <li>메뉴1</li> <!--  :first-child에 해당  0번-->
+     <li>메뉴2</li>
+     <li>메뉴3</li>
+     <li>메뉴4</li>
+     <li>메뉴5</li>
+     <li>메뉴6</li>
+     <li>메뉴7</li> <!-- :last-child에 해당 6번-->
+  </ul>
+</body>
+</html>

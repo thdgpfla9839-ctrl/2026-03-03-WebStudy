@@ -1,0 +1,93 @@
+<!-- 5.12
+p.126 ~ 127 : 선택자 종류
+
+HTML 태그를 제어 - 태그 읽기 - 디자인(CSS), 자바 스크립트
+
+CSS
+body {
+    속성 : 값;
+}
+
+Vuejs 체계적으로 만든게 -> NuxtJS
+
+css의 선택자 위주로 공부
+----------------------------------------------------------
+CSS의 장점
+1) HTML 내용과 상관없이 디자인 변경이 가능
+2) CSS의 종류
+   1. 내부 CSS : 파일 한개만 제어할 때 사용
+                <head> </head> 헤드테그 안에 사용
+   2. 인라인 CSS : 테그 하나를 제어할 때 사용
+                 <a style="속성:값;"> -> 우선순위가 높다
+   3. 외부 CSS : .CSS 파일을 만듦-> 전체 프로젝트에서 공통적으로 사용   
+-----------------------------------------------------------
+태그 선택 : 어떤 태그를 디자인할지
+
+1) * : 전체 선택자 -> margin / padding / font-family => 웹사이트는 글꼴이 동일하게 적용된다
+       형식)
+             * {
+                 margin:0px;
+                 padding:0px;
+                 font-family: "맑은 고딕"
+               }
+               
+2) 태그 선택자 : 구분이 잘 안된다
+           형식)  태그명(모든 태그) {
+                 ------------
+                  |-> body 안에 있는 태그
+                       속성 : 값 ;
+                       속성 : 값 ;
+           
+           }
+                                
+3) ID 선택자 : 중복이 없는 구분자 -> 쓰는 형식 : #아이디명
+   -> img 태그 한번만 쓸 수 있음
+4) class 선택자 : 중복이 가능한 구분자 -> 쓰는 형식 : .class명     
+   -> 한개의 태그에 클래스명을 여러개 사용이 가능함
+      공백으로 구분한다
+      앞은 태그에 해당
+      뒤는 공통적용 
+          
+ 1 ~ 4 : 기본 선택자라고 함  
+
+ 
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+img {
+    border: 3px solid green;
+    border-radius: 20px;
+} 
+/* 공통으로 적용 */
+
+.img1{
+    width: 150px;
+    height: 200px;
+}
+.img2{
+    width: 200px;
+    height: 300px;
+}
+/* 따로 적용*/
+/*  아이디는 여러개 사용이 불가능 1개만 사용이 가능 */
+
+
+</style>
+</head>
+<body>
+<img src="../images/m1.jpg" class="img img1">
+<img src="../images/m2.jpg" class="img img1">
+<img src="../images/m3.jpg" class="img img1">
+<img src="../images/m4.jpg" class="img img2">
+<img src="../images/m5.jpg" class="img img2">
+<img src="../images/m6.jpg" class="img img2">
+<img src="../images/m7.jpg" class="img img2">
+
+
+</body>
+</html>

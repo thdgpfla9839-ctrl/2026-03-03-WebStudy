@@ -1,0 +1,65 @@
+<!-- 
+   1. 상태 선택자
+   2. 구조 선택자 ** 
+   3. 문자 선택자 **
+   4. 부정 선택자
+   -------------------------
+   1. 상태 선택자 : 태그를 가지고 온다
+                 종류 ) checked : 선택이 된 경우 **
+                                 체크박스에서 자주 사용됨 -> 예) id 저장 / 자동 로그인
+                                 jsp에서 아이디나 자동로그인을 제작할 때는 cookie
+                                 front에서는 자바스크립트 - 로컬스트로지 => 쿠키에 해당되는 부분
+                       focus
+                       enabled : 활성화
+                       disabled : 비활성화
+   2. 반응 선택자 : hover
+                 active
+   
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* :active -> 클릭 시 */
+#a:active, #b:active, #c:active {
+	color: red;
+}
+
+/* :hover -> a , 이미지, 버튼, 테이블태그 => 갖다 대면 처리되는 걸 볼 수 있음(mouseover) */
+#a:hover, #b:hover, #c:hover {
+	color: blue;
+}
+
+/* focus, :enabled, :disabled, :checked */
+input :enabled {
+	background: yellow;
+}
+
+input :disabled {
+	background: red;
+}
+
+input :focus {
+	background: white;
+}
+
+/* 자바스크립트에서 가장 많이 사용 */
+input[type="checkbox"]:checked {
+	box-shadow: 0 0 0 3px hotpink;
+}
+</style>
+</head>
+<body>
+  <h1>:active, :hover (반응 선택자)</h1>
+  <h3 id="a">HTML / CSS</h3>
+  <h3 id="b">HTML5 / CSS3</h3>
+  <h3 id="c">JavaScript ES6.0</h3>
+  <h1>:focus, :enabled, :disabled, :checked (상태 선택자):input</h1>
+  <input type=text size=20><p>
+  <input type=text size=30 disabled><p>
+  <input type="checkbox" checked>취미<p>
+</body>
+</html>

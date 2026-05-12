@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table thead tr:first-child {
+	background: orange;
+}
+
+table tbody tr:nth-child(2n) {
+	background: purple;
+}
+/* 0부터 대입한다 */
+table tbody tr:nth-child(4n+2) {
+	background: lime;
+}
+
+table tbody tr:nth-child(4n+3) {
+	background: aqua;
+}
+
+table tbody tr:nth-child(4n+4) {
+	background: olive;
+}
+</style>
+</head>
+<body>
+ <table width=500 border=1 bordercolor=black>
+   <thead>
+     <tr>
+       <th>이름</th>
+       <th>주소</th>
+       <th>전화</th>
+      </tr>
+     </thead>
+     <tbody>
+        <tr>
+          <td>홍길동</td>
+          <td>서울</td>
+          <td>010-</td>
+         </tr>
+         <tr>
+          <td>홍길동</td>
+          <td>서울</td>
+          <td>010-</td>
+         </tr>
+         <tr>
+          <td>홍길동</td>
+          <td>서울</td>
+          <td>010-</td>
+         </tr>
+         <tr>
+          <td>홍길동</td>
+          <td>서울</td>
+          <td>010-</td>
+         </tr>
+         <tr>
+          <td>홍길동</td>
+          <td>서울</td>
+          <td>010-</td>
+         </tr> 
+      </tbody> 
+ </table>
+</body>
+</html>
