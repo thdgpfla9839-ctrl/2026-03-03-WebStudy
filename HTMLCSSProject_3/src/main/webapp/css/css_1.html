@@ -1,0 +1,59 @@
+<!-- 챕터6
+     
+     1. 선택자 
+     2. 속성 -> 이제부터는 여기를 배운다
+     
+     속성
+         1) 박스 속성 : margin / padding / border 
+         2) 가시 속성 : display / overflow
+         3) 배경 속성 : background (color / image)
+         4) 위치 속성 : 절대좌표, 상대좌표, 있는 그대로, 고정
+         5) 유동 속성 : float / z-index
+    -------------------------------------------------------
+    추가로 반응형(해상도에 따라 크기가 달라져)
+         레이아웃(html5 시멘텍 -> header / section footer nav aside)
+    -----------------------------------------------------------
+    
+    박스 속성)
+             1. margin : 외부 여백 저장 (태그 밖에서 조절할 때)
+             2. border : 테두리
+             3. padding : 내부 여백 저장 (태그 안에서 조절할 때)
+             4. content : 이미지 / 문자 저장        
+   ------------------------------------------------------------
+       1. margin : top right bottom left => 시계 방향으로 균형이 잡힌다
+       
+           속기법)
+                 1) margin: 10px에 속기법을 사용하면 => 10px 10px 10px 10px 이렇게 좌표가 잡힌다
+                 2) margin : 10px 20px => 10px 20px 10px 20px => 항상 4가지의 좌표가 잡힌다는 점 명심
+                 3) margin : 10px 20px 30px => 10px 20px 30px 20px
+                 
+           가운데 정렬) margin : 0px auto => 자동 정렬이 된다
+           
+        => 한개씩 사용
+           margin-top : 위 아래 간격 <br> <p>
+           margin-right : 좌우 간격           
+           margin-bottom
+           margin-left
+                      
+                                 
+  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+input {
+	margin-top: 20px; /* 균형을 잡아준다 */
+	display: block;
+}
+</style>
+</head>
+<body>  
+  <input type=text size=30>
+  <input type=text size=30>
+  <input type=text size=30>
+
+</body>
+</html>

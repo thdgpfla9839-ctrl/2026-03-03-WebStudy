@@ -1,0 +1,40 @@
+<!-- 
+    박스 모델 정리
+                1. 외부 간격 조절 : 태그와 태그 사이 여백 조절 => margin
+                                                               종류) margin-top
+                                                                    margin-right
+                                                                    margin-bottom
+                                                                    margin-left
+                                                               => 4가지 한번에 작성하는 법 : margin: margin-top margin-right margin-bottom margin-left
+                                                                                       ->  콤마 없이 나열한다    
+                2. 내부 간격 조절 : 태그 안 글자 / 이미지 조절 => padding
+                                                                 종류) margin과 똑같음
+                3. 테두리 조절   => border
+                                       종류) border-style
+                                            border-width
+                                            border-color
+                                            border-collpase
+                                            border-radius
+                
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+img {
+	border: 2px solid red;
+	border-radius: 15px 30px 50px 70px; /* top-left  top-right  bottom-right  bottom-left 순으로 실행된다 */
+	
+	border-top-left-radius: 50px; /* 한쪽만 둥글게 잡을 떄는 이런식으로 작성한다 -> top-left 부분만 수정하면 됨 */
+    
+}
+
+</style>
+</head>
+<body>
+ <img src="../images/m1.jpg">
+</body>
+</html>
