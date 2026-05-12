@@ -1,0 +1,133 @@
+<!-- 
+      입력 관련 태그
+      
+      <input>
+         1) 버튼 종류 
+         type="button" : 일반 버튼 => 기능이 없다 (JavaScript)
+         type="submit" : 전송 버튼 ==> JSP(자바에서 받아서 처리)
+         type="reset"  : 초기화 
+         type="image"  : 이미지 버튼 => 기능 (submit)
+         <button> : submit 
+         2) 입력 
+         type="text" : 한줄 작성이 가능 => ID , 이름 , 주소 ...
+         type="password" : 비밀번호 입력 => ....
+         3) 기타 
+         type="file" : 파일 다이얼로그 생성 
+         type="date" : 달력 
+         type="number" : spinner 
+         type="range" : 슬라이더바 
+         type="hidden" : 감춘다 => setVisible(false) 
+      <textarea> :  여러줄 입력 
+      <select> : combobox
+         |
+      <option>
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<!-- 
+     <table> 
+        |
+       <tr> : 한줄 
+        |
+   ---------------
+   |             |
+  <th>          <td>
+  제목           데이터
+ -->
+<body>
+  <table border=1 bordercolor="black" width=500>
+    <tbody>
+     <tr>
+       <td>***한줄 문자열</td>
+       <td><input type=text size=15></td>
+     </tr>
+     <tr>
+       <td>***암호 문자열</td>
+       <td><input type="password" size=15></td>
+     </tr>
+     <tr>
+       <td>***파일 다이얼로그(업로드)</td>
+       <td><input type="file" size=25 multiple></td>
+     </tr>
+     <tr>
+       <td>**Spinner(숫자)</td>
+       <td><input type="number" min="1" max="100"></td>
+       <!--  수량  -->
+     </tr>
+     <tr>
+       <td>슬라이더(음량조절, 가격 조절)</td>
+       <td><input type="range" min="10000" max="100000"></td>
+     </tr>
+     <tr>
+       <td>**달력</td>
+       <td><input type="date"></td>
+       <!-- 생년월일 / 기간 검색 (체크인 / 체크아웃)-->
+     </tr>
+     <tr>
+       <td>*****일반 버튼</td>
+       <td><input type="button" value="로그인"></td>
+     </tr>
+     <tr>
+       <td>*****전송 버튼</td>
+       <td><input type="submit" value="전송"></td>
+     </tr>
+     <tr>
+       <td>초기화 버튼</td>
+       <td><input type="reset" value="초기화"></td>
+     </tr>
+     <tr>
+       <td>*****전송_1 버튼(submit)</td>
+       <td><button>전송</button></td>
+     </tr>
+     <tr>
+       <td>전송_2 버튼(submit)</td>
+       <td><input type="image" src="re_icon.png"></td>
+     </tr>
+     <tr>
+       <td>**라디오 버튼</td>
+       <td>
+         <input type="radio" name=sex>남자
+         <input type="radio" name=sex>여자
+       </td>
+     </tr>
+     <tr>
+       <td>**체크 박스</td>
+       <td>
+         <input type="checkbox">낚시
+         <input type="checkbox">운동
+         <input type="checkbox">여행
+         <input type="checkbox">게임
+         <input type="checkbox">독서
+       </td>
+     </tr>
+     <tr>
+       <td>*****보안</td>
+       <td><input type=hidden></td>
+       <!-- 수정 / 삭제 -->
+     </tr>
+     <tr>
+       <td>*****여러줄(멀티라인)</td>
+       <td>
+        <textarea rows="5" cols="30"></textarea>
+       </td>
+     </tr>
+     <tr>
+       <td>*****콤보박스</td>
+       <td>
+        <select multiple>
+          <option>업체명</option>
+          <option>주소</option>
+          <option>지역</option>
+          <option>음식종류</option>
+          <option>테마</option>
+        </select>
+       </td>
+     </tr>
+    </tbody>
+  </table>
+</body>
+</html>
