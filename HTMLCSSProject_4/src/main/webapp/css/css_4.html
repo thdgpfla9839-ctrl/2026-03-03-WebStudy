@@ -1,0 +1,49 @@
+<!--  display : none(감춘다) => 예) 더보기나 줄거리를 눌렀을 시 나머지가 보이게 출력되게 함
+
+     참고) <pre>를 주면 내가 긁어온 그대로 형태를 유지해준다 
+          <div style="display: none"> 내가 원하는 부분 숨길 떄 사용
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  여기는 import 문장 => http://code.jquery.js를 가져오기 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- 여기서 실행되게 코딩해주면된다 -->
+<script type="text/javascript">
+	/* 지금은 a태그가 한개뿐이라 $('a') 이렇게 쓸 수 있는 거래 */
+	/* <body> <a href="#">더보기</a> -> 한개 뿐이라 어떤 a태그를 변경할지 헷갈릴 일이 없음 */
+	let i = 0;
+	$(function() {
+		$('a').click(function() {
+			if (i == 0) {
+				$('a').text("닫기")
+				i = 1;
+				$('div').show();
+			} else {
+				$('a').text("더보기")
+				i = 0;
+				$('div').hide();
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<pre>메릴 스트립, 앤 해서웨이, 에밀리 블런트, 스탠리 투치
+전 세계를 열광시킨 ‘런웨이’ 전설들의 귀환!
+
+전 세계 트렌드를 주도해 온 전설적인 패션 매거진 ‘런웨이’가
+급변하는 미디어 시장 속에서 예기치 못한 위기에 직면한다.
+<a href="#">더보기</a>
+<div style="display: none">
+‘런웨이’를 지켜내려는 편집장 ‘미란다’와
+20년 만에 신임 기획 에디터로 당당히 돌아온 ‘앤디’,
+그리고 이제는 럭셔리 브랜드 임원이 되어 다시 나타난 ‘에밀리’까지
+더 화려하고, 치열해진 뉴욕 패션계에서
+주도권을 차지하기 위해 벌이는 이들의 새로운 이야기가 펼쳐진다!...</div>
+	</pre>
+
+</body>
+</html>

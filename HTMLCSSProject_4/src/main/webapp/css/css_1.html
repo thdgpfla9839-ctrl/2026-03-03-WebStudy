@@ -1,0 +1,249 @@
+<!--  css에서 제공하는 속성 =>p.163 
+
+     속성의 종류)
+                -------------------- 이 앞은 태그선택자에 관해 공부했어
+                1. 박스 속성 
+                   => 외부 간격 조절 : margin  => margin의 속성)
+                                                            => margin-top : 위에서 간격 조절 
+                                                            => margin-right
+                                                            => margin-bottom 
+                                                            => margin-left: 대댓글에 자주 사용된다 
+                                                            => margin : top right bottom left  -> 단축 
+                                                                                                  예) margin : 10px;
+                                                                                                              10px 10px 10px 10px 
+                                                                                                     margin : 10px 20px 
+                                                                                                              10px 20px 10px 20px 
+                                                                                                     margin : 10px 20px 30px 
+                                                                                                              10px 20px 30px 20px 
+                                                                                                                    |         |
+                                                                                                                    -----------
+                                                                                                                |        |
+                                                                                                                ----------
+                                                                                                     => 태그 / 태그 사이의 간격 
+                                                                                                     => 버튼 여러개 출력 => 간격 
+                                                                                                     => margin-top / margin-left 
+                                                                                                     => margin:0px auto; => 가운데 정렬 
+                     => 내부 간격 조절 : padding (태그안의 글자<th> / 이미지 여백<td> ) => padding의 속성) 
+                      테두리       : border   => solid (일반적인 테두리) 
+                2. 가시 속성
+                   => display : inline / block
+                                block 태그 중  테이블테그까지 밑으로 내려가서 출력된다
+                                인라인 테그의 속성을 가진 테그들은 모두 가로로 출력된다 이 경우 밑으로 내려가는 건 브라우저를 초과해서 밑으로 출력된 거 처럼 보이는 것
+                3. 배경 속성
+                   => background
+                4. 텍스트 속성
+                   => font / text
+                5. 위치 속성
+                   => position과 관련 : static
+                                      absolute (절대좌표)
+                                      relative
+                                      fixed
+                      
+                6. 유동 속성
+                   => float / z-index
+                      
+                --------------- 이 과정 끝나면 다음에 배우는 부분은
+                7. 레이아웃 + 시멘텍 태그
+                   => 레이아웃 : flex / grid
+                      시멘텍태그: header / section / nav / footer / aside => 화면 구도 조정
+                -------------------------------------------------------------------------
+                           로고    검색기 => header
+                               메뉴 => nav
+                          로그인     |      실제출력물 => section
+                          광고      |
+                        => aside   | 
+                        
+                        개인정보방침 / 회사정보 => footer
+                --------------------------------------------------------------------------                  
+                8. 반응형
+                   => media 태그 : 해상도에 따라 화면 출력을 다르게 만든다
+                      반응형은 css가 어렵다
+                      사이트 + 모바일의 형태
+                --------------------------------------------------------------------------
+                9. BootStrap / TailWind      
+-----------------------------------------------------------------------------------------------
+1. 박스 속성 
+          외부 간격 : margin 
+            => margin-top : 위에서 간격 조절 
+            => margin-right
+            => margin-bottom 
+            => margin-left: 대댓글 
+            => margin : top right bottom left 
+               단축 
+               예) margin : 10px;
+                           10px 10px 10px 10px 
+                  margin : 10px 20px 
+                           10px 20px 10px 20px 
+                  margin : 10px 20px 30px 
+                           10px 20px 30px 20px 
+                                 |         |
+                                 -----------
+                             |        |
+                             ----------
+            => 태그 / 태그 사이의 간격 
+            => 버튼 여러개 출력 => 간격 
+            => margin-top / margin-left 
+            => margin:0px auto; => 가운데 정렬 
+          내부 간격 : padding => 태그안의 글자 / 이미지 여백 
+                               <th>,<td>
+            => padding-top : 위에서 간격 조절 
+            => padding-right
+            => padding-bottom 
+            => padding-left: 대댓글 
+            => padding : top right bottom left 
+               단축 
+               예) padding : 10px;
+                           10px 10px 10px 10px 
+                  padding : 10px 20px 
+                           10px 20px 10px 20px 
+                  padding : 10px 20px 30px 
+                           10px 20px 30px 20px 
+                                 |         |
+                                 -----------
+                             |        |
+                             ----------
+          테두리 : border 
+            = border-width : 테두리 두께 
+            = border-style : solid / dotted / dashed / double
+            = border-color : 테투리 색상 
+            = border : width style color
+            = border-radius: 타원형 
+                      top-left top-right bottom-right bottom-left
+     2. 가시 속성 
+          display : inline / block 
+          태그는 inline (가로) / block (세로)
+               System.out.print() /  System.out.println()
+               block : 브라우저 한줄 전체를 차지 
+                 = <h1> ~ <h6> , <br> , <p> 
+                   <ul> <ol> <dl> <table>
+                   <div>
+               inline : 자동으로 해당 크기만큼 처리 (가로)
+                 = <img> <a> 글자(<b>,<strong> <font> <sup>)
+                 = <span> , <input> <select> <textarea>
+          display:block => inline을 block으로 변경 
+          
+          <table> 사용하지 않는 것을 권장 
+          ---------------------------
+          <table> : display:table 
+          <tr> : display:table-row 
+          <td> : display:table-cell 
+          <th> : display:table-column
+          ---------------------------- 테이블 디자인 
+     3. 배경 속성 
+          background 
+            => background-color : 색상 
+                                 -----
+                                 시스템 색상 => red / blue ...
+                                 HEX : #CCCCCC (16진법) 
+                                 rgb(255,255,255) 
+                                 rgba(255,255,255,0.1) : 투명 
+                                                  ---
+                                                  0.0~1.0
+            => background-image : 이미지 출력 
+               => 위에 문자가 가능 
+               => background-image:url('이미지 경로')
+               => background-size: 이미지 크기 
+               => background:color지정 / 이미지 설정 / 크기 설정 
+     4. 텍스트 속성 
+          font / text
+     5. 위치 속성 
+          position 
+            = static 
+            = absolute : 절대좌표 
+            = relative 
+            = fixed 
+     6. 유동 속성 
+          float / z-index 
+     ---------------
+     7. 레이아웃 + 시멘텍 태그 
+          flex / grid 
+          header / section / nav / footer / aside : 화면 구도 
+          ------------------------
+            로고      검색기 ==> header
+          ------------------------
+                     메뉴 => nav
+          ------------------------
+           로그인    |
+           광고     |   실제 출력물 => section 
+           aside    |
+                    |
+          ------------------------
+            개인 정보 방침 / 회사 정보 ==> footer
+          ------------------------
+     8. 반응형 
+         media태그 => 해상도에 따라 화면 출력이 다르게 만든다 
+         | 반응형 => CSS가 어렵다 
+         | 사이트 + 모바일 
+                  ------ Kotlin(안드로이드) / Swift (아이콘) 
+                             |                |
+                             ------------------ 플루터 
+                  ------ React Native 
+     9. BootStrap / TailWind : CSS 라이브러리 
+                    --------- 많이 사용 
+     
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div input {
+	margin-left: 100px; /* 태그와 태그 사이의 간격을 줄 때 margin을 사용 */
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-top: 10px;
+}
+
+.box1 {
+  width: 200px;
+  height: 150px;
+  background-color: black;
+  color: white; /* 글자색상은 color */
+  padding-top: 80px; 
+  /*padding-right: 10px; */ 
+}
+
+.box2 {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  margin-top: 20px;
+  border: 3px solid red;
+  
+}
+
+.box3 {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  margin-top: 20px;
+  border-radius: 30px 50px;
+  
+}
+</style>
+</head>
+<body>
+   <div>
+    <input type=button value="좋아요">
+    <input type=button value="즐겨찾기">
+    <input type=button value="예약">
+  </div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box1">
+    Hello CSS(Padding)
+  </div>
+  <div class="box2"><!-- block속성 -->
+  
+  </div>
+  <div class="box3">
+  
+  </div>
+</body>
+</html>

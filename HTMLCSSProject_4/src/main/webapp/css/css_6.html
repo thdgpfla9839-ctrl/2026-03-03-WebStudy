@@ -1,0 +1,74 @@
+<!--
+     background-color : 배경색 지정 (웬만하면 원색은 비추)  
+     background-image : 배경에 이미지 첨부  
+     background-repeat : 이미지 반복 여부(타일)
+     background-position : 배경 이미지 위치 지정
+     background-size : 배경 이미지 크기
+     background-attachment : 배경 고정 여부 확인할 때
+     background : 단축 속성
+     => 단축 속성 예) background:url('../images/back.jpg') no-repeat center/cover;
+                 -> 이걸 풀어쓰면 
+                    background-image: url('../images/back.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+     
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	font-family: sans-serif,"맑은 고딕,궁서체"; /* sans-serif 이게 없는 경우 뒤에거가 실행된다 계속 반복 */
+	margin: 20px;
+}
+h2 {
+	margin-top: 40px;
+	border-bottom: 2px solid gray;
+	padding-bottom: 5px;
+}
+
+.box{
+ width: 200px;
+ height: 130px;
+ margin: 15px;
+ padding: 10px;
+ border: 2px solid gray;
+ display: inline-block;
+ font-size: 14px;
+ font-weight: bold;
+}
+</style>
+</head>
+<body>
+ <h1>배경속성 예시</h1>
+ <h2>background-color</h2>
+ <div class="box" style="background-color: lightblue;">lightblue</div>
+ <div class="box" style="background-color: lightyellow;">lightyellow</div>
+ <div class="box" style="background-color: lightgreen;">lightgreen</div>
+ <h2>background-repeat 반복 여부</h2>
+ <div class="box" style="background:url('../images/tiles.png')repeat;">반복 오케이</div>
+ <div class="box" style="background:url('../images/tiles.png')no-repeat;">반복 x</div>
+ <div class="box" style="background:url('../images/tiles.png')repeat-x;">가로 반복</div>
+ <div class="box" style="background:url('../images/tiles.png')repeat-y;">세로 반복</div>
+ <h2>background-image 이미지 출력</h2>
+ <div class="box" style="background:url('../images/back.jpg');">이미지 출력</div>
+ <div class="box" style="background:url('../images/back.jpg');background-size:100% 100%">size</div>
+ <div class="box" style="background:url('../images/back.jpg');background-size:cover">cover</div>
+ <div class="box" style="background:url('../images/back.jpg');background-size:contain">contain</div>
+ <h2>background-attachment 이미지 고정 여부</h2>
+ <div class="box" style="overflow: auto;background-image: url('../images/back.jpg');
+      background-repeat:no-repeat;
+      background-position: center;
+      background-attachment: fixed;">
+      background-attachment<br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      scroll
+</div>
+<h2>background 단축 속성</h2>
+<div class="box" style="background:url('../images/back.jpg')no-repeat center/cover;">단축</div>
+</body>
+</html>
