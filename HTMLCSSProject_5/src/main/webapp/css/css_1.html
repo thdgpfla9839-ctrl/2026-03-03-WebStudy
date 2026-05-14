@@ -1,0 +1,79 @@
+<!--  p. 170 
+      
+      가시 속성 : 주로 display 속성이라고 보면 됨
+      
+      display : none => 화면에 안 보이게 만드는 경우 ex) 더보기 / cookie(jsp이용)에서는 무한스크롤(자바스크립트에서 처리)과 유사함
+      display : inline => 가로로 출력되게 만드는 경우
+      display : block => 세로로 출력이 되게 만드는 경우 
+      display : inline-block => 가로로 출력되는데 (width,heght가 지정돼 있는 경우에 사용한다)
+      기타) display : flex
+           display : table / table-row / table-coliumn / table-data
+           
+      => 가시 속성은 주로 자바스크립트에서 사용됨
+         동적 페이지라고 볼 수 있음
+         show / hide를 사용     
+          
+       -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* 공통 부분 모아서 처리 */
+div {
+	width: 300px;
+	height: 300px;
+	margin-left:3px;
+	margin-top: 20px;
+	background-color: lightblue;
+	display: inline-block;
+}
+ul {
+	 list-style: none; /*  지금은 .을 제외시켜줌, 이 기호는 다양한게 올 수 있음 */ 
+	 width: 900px;
+	 height: 30px;
+	
+}
+
+ul li {
+	display: inline-block;
+	width: 120px;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+  <div class="box1">
+   <b>일식 오이 새콤달콤 간장 무침 (featured by 유채꽃 )만드는법</b>
+   오이가 맛있는 계절이라 연하고 신선한 오이를 저렴하게 구할 수 있어 좋은 요즘이죠.
+오이 반찬 중에서 젤 간편하면서도 상큼하고 담백해서 좋아하는 요리가 오이 간장 무침이예요.
+일식 스타일 반찬인데 일본 여행 중에 어느 식당에서 먹어 본 뒤로 오이 제철인 계절에
+몇번이고 무한 반복하면서 해먹게 되요.
+  </div>
+  <div class="box2">
+   <b>피클인듯 장아찌인듯 ~ 산뜻하고 라이트한 마늘쫑 피클 장아찌 만드는법</b>
+   햇마늘쫑이 많이 보이길래 매년 주문하는 영천 마늘쫑을 한박스 주문해서 김장하듯이 일년 먹을 마늘쫑 장아찌 한가득 만들었어요.
+  </div>
+  <div class="box3">
+   <b>봄꽃 샐러드 ~ 아카시아 유채 대패목살 샐러드 만드는법</b>
+   카시아꽃을 많이 따와서 여러가지 요리에 활용해 봤어요.
+아카시아꽃과 요즘 많이 피고 있는 유채꽃을 따다가 야채랑 같이 담고 고기를 구워 올리니
+든든하고 예쁘고 맛있는 샐러드 한접시가 되네요.
+아카시아꽃은 예전에 보리고개 있던 시절에 배고프면 따먹던 식용꽃이라서 깨끗하게 씻어 샐러드로 활용해도 되고 유채꽃도 식용 유채나물 꽃이라서 먹을 수 있는 꽃이예요.
+꽃요리를 할 때는 꽃이 활짝 피기 전 싱싱하게 갓 피어난 꽃이나 아직 피기 직전의 꽃을
+사용하는 게 좋아요.  
+   
+  </div>
+  <h1>메뉴</h1>
+  <ul>
+   <li>홈</li>  
+   <li>회원</li>  
+   <li>맛집</li>  
+   <li>레시피</li>  
+   <li>스토어</li>  
+   <li>커뮤니티</li>  
+   <li>마이페이지</li>  
+  </ul>
+</body>
+</html>

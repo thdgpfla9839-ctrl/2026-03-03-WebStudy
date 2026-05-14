@@ -1,0 +1,194 @@
+<!--  overflow / z-index 
+       
+       overflow : 공간을 벗어난 경우 사용
+       z-index : 레이어 -> 원하는 태그를 가장 위에 올려주는 기능
+       
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	font-family: sans-serif;
+	margin: 20px;
+}
+h2 {
+	margin-top: 40px;
+	border-bottom: 2px solid gray;
+	padding-bottom: 5px;
+}
+.container { 
+/* 전체 테두리를 만드는 것이 컨테이너 */
+ margin: 15px 0px;
+ border: 2px dashed gray;
+ padding: 10px;
+ width: 400px;
+ min-height: 80px;
+}
+.box {
+ display: inline-block;
+ width: 100px;
+ height: 50px;
+ margin: 5px;
+ line-height: 50px;
+ text-align: center;
+ color: white;
+ font-weight: bold;
+ border-radius: 8px;
+}
+.red{
+ background-color: red;
+}
+.green{
+ background-color: green;
+}
+.blue{
+ background-color: blue;
+}
+.none{
+ display: none;
+}
+.hidden {
+ visibility: hidden;
+}
+.opacity0 {
+ opacity: 0.0
+}
+.obox{
+ width: 180px;
+ height: 100px;
+ border: 2px solid black;
+ margin: 10px;
+ padding: 5px;
+ background: lightpink;
+}
+.visible{
+ overflow: visible;
+}
+.ohidden{
+ overflow: hidden;
+}
+.scroll{
+ overflow: scroll;
+}
+.auto{
+ overflow: auto;
+}
+.z-container{
+ position: relative; /* 상대 좌표 */
+ width: 200px;
+ height: 200px;
+ border: 2px solid black;
+ margin: 10px;
+}
+.z-box{
+  width: 120px;
+  height: 120px;
+  position: absolute; /*절대좌표*/
+  top: 40px;
+  left: 40px;
+  opacity: 0.8;
+}
+.red-z{
+ background: red;
+ z-index: 10; /* 우선순위 바꿔주는 명령어 z-index 숫자가 높을수록 순위가 높아 가장 위로 올라온다 , 이미지위에 글자를 쓰거나 다른 이미지를 겹쳐쓸 때 사용한다 */
+}
+.green-z{
+ background: green;
+ z-index: 5;
+ left: 60px;
+ top: 60px;
+}
+.blue-z{
+ background: blue;
+ z-index: 1;
+ left: 80px;
+ top: 80px;
+}
+
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js">
+$(function() {
+	$('.hidden').click(function() {
+		alter("hidden은 이벤트가 발생된다")
+	})
+	$('.opacity0').click(function() {
+		alter("opacity0은 이벤트가 발생된다")
+	})
+	
+	
+})
+</script>
+</head>
+<body>
+ <h1>css 가시 속성 정리</h1>
+ <h2>1. display:none 아예 사라짐</h2>
+ <div class="container">
+   <div class="box red">A</div>
+   <div class="box green none">B</div>
+   <div class="box blue">C</div>
+ </div>
+  <p>B박스는 <b>완전히 사라진다 공간도 없다</b></p>
+  
+ 
+ <h2>2. visiblity:hidden 안 보이도록 숨겨놓은 기능, 공간은 그대로 차지해</h2>
+ <div class="container">
+   <div class="box red">A</div>
+   <div class="box green hidden">B</div>
+   <div class="box blue">C</div>
+ </div>
+    <p>B박스는 <b>보이지는 않지만 공간은 존재한다 그래서 클릭영역이나 버튼 위치 등과 같은 이벤트의 흔적이 남아있다</b></p>
+    
+    
+ <h2>3. opacity:0.0 존재는 하는데 투명하게 만들어서 눈에 안 보임</h2>
+ <div class="container">
+   <div class="box red">A</div>
+   <div class="box green opacity0">B</div>
+   <div class="box blue">C</div>
+ </div>
+    <p>B박스는 <b>투명화 시킴, 공간이 있고 이벤트가 가능하다</b></p>
+    
+    
+ <h2>4. overflow</h2>
+ <div class="container">
+  <div class="obox visible">
+   <b>overflow:visible</b><br>
+   매콤달콤한 양념이 쏙 배어. 누구나 좋아하는 닭양념 구이 만드는 법 소개해드릴께요
+   닭양념 구이 만드는 법 소개해드릴께요
+  </div>
+  
+  
+  <div class="obox ohidden">
+   <b>overflow:hidden</b><br>
+   매콤달콤한 양념이 쏙 배어. 누구나 좋아하는 닭양념 구이 만드는 법 소개해드릴께요
+   닭양념 구이 만드는 법 소개해드릴께요
+  </div>
+  
+  
+  <div class="obox scroll">
+   <b>overflow:scroll</b><br>
+   매콤달콤한 양념이 쏙 배어. 누구나 좋아하는 닭양념 구이 만드는 법 소개해드릴께요
+   닭양념 구이 만드는 법 소개해드릴께요
+  </div>
+  
+  
+  <div class="obox auto">
+   <b>overflow:auto 범위를 벗어나지 않으면 스크롤바가 안 생긴다</b><br>
+   매콤달콤한 양념이 쏙 배어.
+  </div>
+  
+ </div>
+ 
+ <h2>5. z-index</h2>
+ <div class="z-container">
+   <div class="z-box red-z">A</div>
+   <div class="z-box green-z">B</div>
+   <div class="z-box blue-z">C</div>
+ </div>
+  <p>z-index는 값이 클수록 위에 올라온다 <b>상담창, 실시간 채팅/ 실시간 알림등에 사용된다</b></p>
+  
+</body>
+</html>
