@@ -61,6 +61,13 @@ public class BoardDAO {
 					+ "ORDER BY no DESC " + "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
 
 			// 강사님 주석처럼 sql문장을 쓸 수도 있음
+			/*
+			 * SELECT no,subject,name,TO_CHAR(regdate,'yyyy-mm-dd'),hit,num
+		    *     FROM (SELECT no,subject,name,regdate,hit,rownum as num
+		    *     FROM (SELECT no,subject,name,regdate,hit
+		    *     FROM jspBoard ORDER BY no DESC))
+		    *     WHERE num BETWEEN ? AND ? => 인라인 뷰 
+			 */
 
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, (page * 10) - 10); // 항상 0번 부터 시작해서 0부터 10씩 페이지를 자른다고 생각
