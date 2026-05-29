@@ -16,7 +16,21 @@
       <table class="table">
        <tr>
         <th width=10% class="text-center">이름</th>
-        <td width=90%><input type=text name=name size=20 class="input-sm" required></td>
+        <td width=90%><input type=text name=name size=20 class="input-sm" required>
+         <input type="hidden" name=pno value="${param.no }">
+          <%--
+            ${param.no} 는 request.getPatameter("no")와 똑같다
+            reply.jsp?no=${vo.no}
+            값하나 받을 때는 저렇게 처리해도 된다 => value="${param.no }"
+            -----------------------------------------------------
+            ${requestScope.키}
+            ${sessionScope.키}
+            ${param.no}
+            ${pageContext.키}
+            
+            그외에는 비교연산자 / 삼항연산자 / += 정도 등장
+           --%>
+        </td>
        </tr>
        <tr>
         <th width=10% class="text-center">제목</th>
