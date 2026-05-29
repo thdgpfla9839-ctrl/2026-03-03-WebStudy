@@ -53,36 +53,41 @@
                  </c:forEach>
                   <img src="re_icon.png">
                </c:if> 
-               ${vo.subject } <%-- vo.getSubject() 부분이다 --%>
-                <c:if test="${vo.dbday==today }">
-                 &nbsp;<sup><img src="new.gif"></sup>
-                </c:if>
-            </td>
-             <td width=15% class="text-center">${vo.name }</td>
-             <td width=20% class="text-center">${vo.dbday }</td>
-             <td width=10% class="text-center">${vo.hit }</td>
-          </tr>
-           <c:set var="count" value="${count-1 }"/>
-         </c:forEach>
-         </table>
-          <table class="table">
-           <tr>
-            <td class="text-left">
-              <select class="input-sm">
-               <option>이름</option>
-               <option>제목</option>
-               <option>내용</option>
-              </select>
-               <input type=text name=fd size=15 class="input-sm">
-               <button class="btn-sm btn-primary">검색</button>
-            </td>
-            <td class="text-right">
-             <a href="#" class="btn brn-sm btn-info">이전</a>
-              ${curpage } page / ${totalpage } pages
-             <a href="#" class="btn brn-sm btn-warning">다음</a>
-            </td>
-           </tr> 
-          </table>
+                <%-- 상세보기는 1개만 실행 => primary key 컬럼을 넘겨준다 --%>
+                
+                <a href="detail.jsp?no=${vo.no }">${vo.subject } <%-- vo.getSubject() 부분이다 --%>
+                 <c:if test="${vo.dbday==today }">
+              &nbsp;<sup><img src="new.gif"></sup>
+             </c:if>
+           </td>
+           <td width=15% class="text-center">${vo.name }</td>
+           <td width=20% class="text-center">${vo.dbday }</td>
+           <td width=10% class="text-center">${vo.hit }</td>
+         </tr>
+         <c:set var="count" value="${count-1 }"/>
+         <%--
+            count--
+          --%>
+       </c:forEach>
+     </table>
+     <table class="table">
+       <tr>
+         <td class="text-left">
+          <select class="input-sm">
+            <option>이름</option>
+            <option>제목</option>
+            <option>내용</option>
+          </select>
+          <input type=text name=fd size=15 class="input-sm">
+          <button class="btn-sm btn-primary">검색</button>
+         </td>
+         <td class="text-right">
+           <a href="#" class="btn btn-sm btn-info">이전</a>
+            ${curpage } page / ${totalpage } pages
+           <a href="#" class="btn btn-sm btn-warning">다음</a>
+         </td>
+       </tr>
+     </table>
    </div>
   </div>
 </body>
