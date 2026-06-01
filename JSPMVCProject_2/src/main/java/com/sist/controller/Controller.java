@@ -27,26 +27,22 @@ public class Controller extends HttpServlet {
 		clsMap.put("delete", new DeleteModel());
 	}
 
-	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String uri = request.getRequestURI();
-		String cmd = uri.substring(request.getContextPath().length()+1,uri.lastIndexOf("."));
-		
+		String uri=request.getRequestURI();
+		String cmd=uri.substring(request.getContextPath().length()+1,
+				uri.lastIndexOf("."));
 		if(cmd.equals("*"))
 		{
-			cmd = "list";
+			cmd="list";
 		}
-		
-		System.out.println("uri="+uri);
-		System.out.println("cmd="+cmd);
-		
-		Model model = (Model)clsMap.get(cmd);
-		String jsp = model.execute(request);
-		RequestDispatcher rd = request.getRequestDispatcher(jsp);
+		//System.out.println("uri="+uri);
+		//System.out.println("cmd="+cmd);
+		Model model=(Model)clsMap.get(cmd);
+		String jsp=model.execute(request);
+		RequestDispatcher rd=
+				request.getRequestDispatcher(jsp);
 		rd.forward(request, response);
-		
 	}
 
 }

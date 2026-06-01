@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--  namespace는 패키지명이라고 생각하면 됨 -->
+  <mapper namespace="com.sist.dao.databoard-mapper">
+  <!-- 목록 출력 -->
+  <select id="databoardListData" resultType="DataBoardVO" parameterType="int">
+  SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+  FROM mvcDataBoard
+  ORDER BY no DESC
+  OFFSET #{start} ROWS FETCH NEXT 10 ROWS ONLY 
+  </select>
+  <!--  총페이지 구하기 -->
+  <select id="databoardTotalPage" resultType="int">
+  SELECT CEIL(COUNT(*)/10.0) FROM mvcDataBoard   
+  </select>
+  </mapper>
