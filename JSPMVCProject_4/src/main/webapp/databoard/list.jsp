@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-  
+  <!-- 여기는 .do가 컨트롤러 실행 후 .do를 입력해야 정보가 들어온다 -->
 <!DOCTYPE html>
 <html>
 <head>

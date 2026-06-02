@@ -17,6 +17,7 @@ import com.sist.model.*; // 모델을 찾으려면 필요하다
 // 컨트롤러가 고정이 안 되면 사이트가 동작할 수 X
 public class Controller extends HttpServlet  // 컨트롤러 고정시키려는중
 {
+	// 이렇게 하나하나 클래스로 코딩하면 안 됨 관리가 어려워 => 메소드화 해서 만들어야 해
 	private static final long serialVersionUID = 1L;
 	private String[] cls = {
 			"com.sist.model.ListModel" // 클래스 등록
