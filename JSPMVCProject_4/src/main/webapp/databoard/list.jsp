@@ -30,6 +30,13 @@ h3 {
     <div class="row">
       <h3>자료실</h3>
       <table class="table">
+        <tr>
+         <td>
+          <a href="insert.do" class="btn btn-sm btn-warning">새글</a>
+         </td>
+        </tr>
+      </table>
+      <table class="table">
         <tr class="success">
           <th width=10% class="text-center">번호</th>
           <th width=45% class="text-center">제목</th>
@@ -40,19 +47,21 @@ h3 {
         <c:forEach var="vo" items="${list }">
           <tr>
 	          <td width=10% class="text-center">${vo.no }</td>
-	          <td width=45%>${vo.subject }</td>
+	          <td width=45%>
+	           <a href="detail.do?no=${vo.no }">${vo.subject }</a>
+	          </td>
 	          <td width=15% class="text-center">${vo.name }</td>
 	          <td width=20% class="text-center">${vo.dbday }</td>
 	          <td width=10% class="text-center">${vo.hit }</td>
           </tr>
         </c:forEach>
       </table>
-       <table class="table">
+      <table class="table">
        <tr>
         <td class="text-center">
-          <a href="list.do?page=${ curpage>1?curpage-1:curpage }" class="btn btn-sm btn-danger">이전</a>
-          ${ curpage } page / ${ totalpage } pages
-          <a href="list.do?page=${ curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-danger">다음</a>
+          <a href="list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-danger">이전</a>
+          ${curpage } page / ${totalpage } pages
+          <a href="list.do?page=${curpage<totalpage?curpage+1:curpage}" class="btn btn-sm btn-danger">다음</a>
         </td>
        </tr>
       </table>

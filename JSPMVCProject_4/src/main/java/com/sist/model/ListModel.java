@@ -19,6 +19,10 @@ public class ListModel implements Model {
 		List<DataBoardVO> list = DataBoardDAO.databoardListData(start);
 		int totalpage = DataBoardDAO.databoardTotalPage();
 		
+		// JSP <% %> , <%= %> 사용하지 않는다
+	    //             ------ EL로 출력
+	    //     ----- Model클래스 처리 
+		
 		// 결과값 list.jsp에 보내기
 		request.setAttribute("list", list); //${list} 출력할 떄는 이렇게 형식이 바쒼다
 		request.setAttribute("curpage", curpage); // ${curpage}
