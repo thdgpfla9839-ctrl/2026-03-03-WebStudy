@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+    <!-- 이 파일에서는 전체틀은 동일하나 vo 등록 부분만 수정해주면 된다
+         따라서 프로젝트 만들 떄 복붙해주면 됨
+     -->
+  
+  
+  <configuration>
+   <!-- 1. VO 등록 -->
+   <typeAliases>
+    <typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
+    <typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+    <typeAlias type="com.sist.vo.ReplyVO" alias="ReplyVO"/>
+   </typeAliases>
+   <!-- 2. 커넥션 정보 등록 -->
+   <environments default="development">
+    <environment id="development">
+     <transactionManager type="JDBC"/> <!-- autocommit -->
+     <dataSource type="POOLED"> <!--  Connection Pool -->
+      <!-- setDriver(oracle.jdbc.driver.OracleDriver) -->
+      <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+       <!-- setUrl()에 값을 채운다 -->
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> <!-- 깃허브에 올릴떄는 아이피 부분 로컬호스트로 변경한 후에 올린다 -->
+        <!-- setUsername()에 값을 채운다 -->
+      <property name="username" value="hr"/>
+      <property name="password" value="happy"/>
+      
+      <!-- 
+            <property> 는 setxxx 메소드를 호출하는 것
+            {} 이 나오면 getXxx 메소드를 호툴하는 것
+           => 이런 방식을 'DI' 라고 한다 (세터에 값 채우는 것을 )
+           ============================================
+           
+           Connection Pool : 미리 커넥션 연결해주는 부분
+           -> 이걸 쓰면 몇개 연결할지(maxActive => 8) / 몇개 사용할지(maxIdle => 8)/ 반환시까지 기다리는 시간이 나올 거야(maxWait => 10000) 
+      
+      
+      
+       -->
+     </dataSource>
+    </environment>
+   </environments>
+   <!-- 3. sql mapper 등록 -->
+   <mappers>
+    <mapper resource="com/sist/mapper/food-mapper.xml"/>
+    <mapper resource="com/sist/mapper/member-mapper.xml"/>
+    <mapper resource="com/sist/mapper/reply-mapper.xml"/>
+   </mappers>
+  </configuration>

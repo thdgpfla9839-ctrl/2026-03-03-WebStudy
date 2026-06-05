@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  모델을 등록하는 위치 즉, 모델 클래스 -->
+<!--  여기에 메뉴를 작업할 예정 -->
+<beans>
+  <!--  패키지 단위 클래스를 메모리 할당해준다  context:component-scan basepackage 이게 스프링 코드래-->
+ <context:component-scan basepackage="com.sist.model"/>
+</beans>
