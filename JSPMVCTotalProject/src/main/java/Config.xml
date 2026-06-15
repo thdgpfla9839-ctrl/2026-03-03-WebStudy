@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  <!--  1. vo 등록 -->
+   <typeAliases>
+    <typeAlias type="com.sist.vo.SeoulVO" alias="SeoulVO"/>
+   </typeAliases>
+   <!--  2. 오라클 환경 설정 : 정보 등록 => DBCP를 쓰기 떄문에 자동으로 생성하고 들어가야 한다 -->
+   <environments default="development">
+    <environment id="development">
+     <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+       <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@:1521:xe"/>
+       <property name="username" value="hr"/>
+       <property name="password" value="happy"/>
+      </dataSource>
+    </environment>
+   </environments>
+   <!--  3. sql 문장을 저장하는  Mapper 등록 -->
+   <mappers>
+    <mapper resource="com/sist/mapper/seoul-mapper.xml"/>
+    <!-- mapper 등록이 없는 경우에는 sql문장을 실행할 수 없다 -->
+    <!--  mapper는 테이블 당 1개씩 -->
+   </mappers>
+  </configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.seoul-mapper">
+
+<!-- ${} 앞에 $를 준 이유 : 
+     #{} 앞에 #을 준 이유 : 
+ -->
+<select id="seoulListData" resultType="SeoulVO" parameterType="hashmap"> <!--  vo에 없는 변수가 있을 수 잇어서 hashmap 을 사용 -->
+ SELECT no,poster,title
+ FROM ${table} <!-- DB에 같은 내용(컬럼이 같아야 한다)의 테이블이 4개야 그래서 테이블명만 바꿔주면 하나로 끝나 같은 내용이라 -->
+ ORDER BY no ASC
+ OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY <!--  start자리는 키명이다 그래서 모델클래스 안에 map.get("키명")과 일치 시켜야해 -->
+</select>
+<select id="seoulTotalPage" resultType="int" parameterType="hashmap">
+ SELECT CEIL(COUNT(*)/12.0) FROM ${table}
+</select>
+
+<!--  상세보기 -->
+<update id="hitIncrement" parameterType="hashmap">
+ UPDATE ${table} SET
+ hit=hit+1
+ WHERE no=#{no}
+</update>
+<select id="seoulDetailData" resultType="SeoulVO" parameterType="hashmap">
+ SELECT *
+ FROM ${table}
+ WHERE no=#{no} <!-- dao 가서 구현하러 가자 -->
+</select>
+</mapper>
