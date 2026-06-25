@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.board-mapper">
+<!-- 반복 코드가 나왔을 때 구간은 상관없다, id 부분은 아무거나 입력해도 됨, 동적쿼리에서 가장 많이 쓴다 -->
+<sql id="where-no">
+ WHERE no=#{no}
+</sql>
+
+<select id="boardListData" resultType="BoardVO" parameterType="int">
+SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+FROM jspboard
+ORDER BY no DESC
+OFFSET #{start} ROWS FETCH NEXT 10 ROWS ONLY
+</select>
+<select id="boardRowCount" resultType="int">
+SELECT COUNT(*) FROM jspboard
+</select>
+<insert id="boardInsert" parameterType="BoardVO">
+<!--  sequence 대신 만들어 주는 중 
+      #{} = setString() => ''
+      ${} = 일반 문자열 => column / table
+-->
+<!-- <selectKey keyProperty="no" resultType="int" order="BEFORE">
+SELECT NVL(MAX(no)+1,1) as no FROM jspboard
+</selectKey> -->
+
+INSERT INTO jspboard(name,subject,content,pwd) VALUES(
+  <!--  여기 name은 getName -->
+  #{name},
+  #{subject},
+  #{content},
+  #{pwd}
+)
+</insert>
+
+<!--  상세보기 -->
+<update id="hitIncrement" parameterType="int"> <!--  리절트타입이 없는 경우는 void -->
+ UPDATE jspboard SET
+ hit=hit+1
+ <include refid="where-no"/> <!-- 해당 반복문장에는 include를 사용해서 저장문장을 적어준다 -->
+</update>
+<!--  
+     resultType  : insert~ 여기는 리절트타입이 없다
+     parameterType
+     
+     sql문장의 반복이 있는 경우에는 <sql>태그를 이용하는게 편하다  
+ -->
+<select id="boardDetailData" resultType="BoardVO" parameterType="int">
+SELECT no,name,subject,content,hit,
+TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday
+FROM jspboard
+<include refid="where-no"/>
+</select>
+</mapper>
