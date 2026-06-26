@@ -61,7 +61,7 @@ h3{
           </tr>
           <tr>
             <td colspan="4" class="text-right">
-             <a href="#" class="btn btn-xs btn-warning">수정</a>
+             <a :href="'../board/update.do?no='+no" class="btn btn-xs btn-warning">수정</a>
              <a class="btn btn-xs btn-warning a-link"
               @click="btnClick()">{{isOn?'삭제':'취소'}}</a>
              <a href="../board/list.do" class="btn btn-xs btn-warning">목록</a>
@@ -135,12 +135,13 @@ h3{
 				return
 			}
 			
-			// 데이터 전송 
+			// 데이터 전송 (삭제를 요청)
 			axios.get('../board/delete_vue.do',{
 				params:{
 					no:this.no,
-					pwd:this.pwd
+					pwd:this.pwd // 비밀번호가 맞는지 처리
 				}
+			// response 부분은 요청 처리에 대한 결과값 => 처리는 model에서 처리된다
 			}).then(response=>{
 				if(response.data==='yes')
 				{
@@ -155,7 +156,7 @@ h3{
 			})
 		}
 	}
-}).mount(".container")
+}).mount(".container") // mount( )말고 component,computed=> 상품과 관련된 계산식 , watch => 채팅관련 를 쓸 수도 있다
 </script>
 </body>
 </html>

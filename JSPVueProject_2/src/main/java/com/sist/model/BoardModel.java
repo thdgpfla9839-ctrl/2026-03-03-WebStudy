@@ -1,5 +1,8 @@
 package com.sist.model;
-
+/*
+ *  ajax는 비동기로 사용 안 한다
+ *  
+ */
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -67,16 +70,18 @@ public class BoardModel {
 	@RequestMapping("board/insert_ok.do")
 	public void board_insert_ok(HttpServletRequest request, HttpServletResponse response)
 	{
-		String name = request.getParameter("name");
-		String subject = request.getParameter("subject");
-		String content = request.getParameter("content"); // 괄호 안에 값은 insert.jsp 파일 속 명칭과 일치 시켜야 한다
-		String pwd = request.getParameter("pwd");
+		   String name=request.getParameter("name");
+		   String subject=request.getParameter("subject");
+		   String content=request.getParameter("content");
+		   String pwd=request.getParameter("pwd");
+		  
+		   
+		   BoardVO vo=new BoardVO();
+		   vo.setName(name);
+		   vo.setSubject(subject);
+		   vo.setPwd(pwd);
+		   vo.setContent(content);
 		
-		BoardVO vo = new BoardVO();
-		vo.setName(name);
-		vo.setSubject(subject);
-		vo.setPwd(pwd);
-		vo.setContent(content);
 		
 		BoardDAO.boardInsert(vo);
 	}
@@ -104,6 +109,100 @@ public class BoardModel {
 			response.setContentType("text/plain;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.write(json);
+		}
+		catch (Exception ex) {}
+	}
+	
+	@RequestMapping("board/delete_vue.do")
+	public void board_delete_vue(HttpServletRequest request, HttpServletResponse response)
+	{
+		// detail.jsp에 데이터 전송 부분을 여기다 받는 과정
+		String no =request.getParameter("no");
+		String pwd = request.getParameter("pwd");
+		
+		// 데이터베이스에 연동한다 디비는 2개가 나온다
+		boolean bCheck = BoardDAO.boardDelete(Integer.parseInt(no), pwd);
+		String msg="";
+		if(bCheck==true)
+		{
+			msg = "yes"; // 이렇게 되면 목록으로 이동
+		}
+		else
+		{
+			msg = "no"; // 이거면 비번이 틀렸다는 소리
+		}
+		
+		// vue로 전송
+		try
+		{
+			// 일반 문자열을 보낼 때는 text/html
+			// JSON을 보낼 떄는 text/plain으로 전송한다
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.write(msg);
+		}
+		catch (Exception ex) {}
+	}
+	
+	@RequestMapping("board/update.do")
+	public String board_update(HttpServletRequest request, HttpServletResponse response)
+	{
+		return "../board/update.jsp"; // 수정하기 기능 처리까지 다 완성 이제 리스트에서 실행해봐
+	}
+	
+	// 화면 이동도하고 이전에 데이터(수정 전 게시글 내용)까지 불러오게끔 하는 과정
+	@RequestMapping("board/update_vue.do")
+	public void board_update_vue(HttpServletRequest request, HttpServletResponse response)
+	{
+		String no = request.getParameter("no");
+		BoardVO vo = BoardDAO.boardUpdateData(Integer.parseInt(no));
+		
+		try
+		{
+			ObjectMapper mapper =new ObjectMapper();
+			String json=mapper.writeValueAsString(vo);
+			
+			
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.write(json);
+		}
+		catch (Exception ex) {}
+	}
+	
+	// 게시글 수정 후 수정 버튼 눌러서 실제 수정이 되게끔 하는 기능
+	@RequestMapping("board/update_ok.do")
+	public void board_update_ok(HttpServletRequest request, HttpServletResponse response)
+	{
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content"); 
+		String pwd = request.getParameter("pwd");
+		String no = request.getParameter("no");
+		
+		BoardVO vo = new BoardVO();
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setPwd(pwd);
+		vo.setContent(content);
+		vo.setNo(Integer.parseInt(no)); // 여기까지하면 mapper에 #부분에 값이 채워진다
+		
+		// db연동
+		String msg="no";
+		
+		boolean bCheck=BoardDAO.boardUpdate(vo);
+		if(bCheck==true)
+		{
+			msg="yes";
+		}
+		
+		try
+		{
+			// 일반 문자열을 보낼 때는 text/html
+			// JSON을 보낼 떄는 text/plain으로 전송한다
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.write(msg);
 		}
 		catch (Exception ex) {}
 	}

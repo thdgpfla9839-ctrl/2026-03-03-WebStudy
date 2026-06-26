@@ -51,4 +51,20 @@ TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday
 FROM jspboard
 <include refid="where-no"/>
 </select>
+<!--  게시글 작성 후 삭제하기 부분 -->
+<select id="boardGetPassword" resultType="string" parameterType="int">
+ SELECT pwd
+ FROM jspboard
+ WHERE no=#{no}
+</select>
+<delete id="boardDelete" parameterType="int">
+ DELETE FROM jspboard
+ WHERE no=#{no} <!-- 이제 dao에서 기능 처리하러 간다 -->
+</delete>
+<!-- 수정하기 클릭시 이전 게시글 내용 불러오기, 수정 내용 입력후 수정되게끔 실제 수정 만들기 -->
+<update id="boardUpdate" parameterType="BoardVO">
+ UPDATE jspboard SET
+ name=#{name},subject=#{subject},content=#{content}
+ WHERE no=#{no}
+</update> <!--  dao에서 기능 만들러 간다 -->
 </mapper>
