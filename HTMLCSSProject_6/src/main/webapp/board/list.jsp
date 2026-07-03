@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
 <% 
+   // jdbc CRUD 이용해서 자유게시판 페이지 만들기, 페이지 나누고 새글 쓰기까지 
    // 출력할 데이터 => 1. 사용자가 요청한 데이터 받기 (오늘은 페이지에 해당됨 => 한 파일 안에서 데이터를 변경 => 동적 페이지)
    // HTML은 정적 페이지라 자체 내에서 데이터 변경이 안 됨
    // 동적페이지 : jsp / javascript but, 자바스크립트는 다른 서버에 연결이 안된다

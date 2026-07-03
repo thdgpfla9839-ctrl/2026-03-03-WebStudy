@@ -6,9 +6,10 @@
     	strPage="1";
     int curpage=Integer.parseInt(strPage);
     BoardDAO dao=new BoardDAO();
-    List<EmpVO> list=dao.empListData(curpage);
+    List<Empvo> list=dao.empListData(curpage);
     int totalpage=dao.empTotalPage();
 %>
+<!--  emp 테이블 이용해서 사원목록 페이지 만듦, 페이지 나누고 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@ h3 {
        </thead>
        <tbody>
          <%
-            for(EmpVO vo:list)
+            for(Empvo vo:list)
             {
          %>
                 <tr>
