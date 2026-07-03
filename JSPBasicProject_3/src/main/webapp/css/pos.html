@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>position 비교</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    line-height: 1.7;
+  }
+
+  h2 {
+    margin-top: 50px;
+    color: #333;
+  }
+
+  .code {
+    background: #222;
+    color: #00ff90;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+
+  .note {
+    background: #f4f4f4;
+    padding: 15px;
+    border-left: 5px solid #4caf50;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    border: 2px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+    height: 180px;
+  }
+
+  .flow-box {
+    width: 100px;
+    height: 100px;
+    color: white;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .flow1 {
+    background: #3498db;
+  }
+
+  .flow2 {
+    background: #e74c3c;
+  }
+
+  .flow3 {
+    background: #2ecc71;
+  }
+
+  /* static */
+  .static {
+    position: static;
+    top: 30px;
+    left: 40px;
+  }
+
+  /* relative */
+  .relative {
+    position: relative;
+    top: 30px;
+    left: 40px;
+  }
+
+  /* absolute */
+  .absolute-parent {
+    position: relative;
+    height: 220px;
+  }
+
+  .absolute {
+    position: absolute;
+    top: 30px;
+    left: 140px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- STATIC -->
+  <h2>1. static</h2>
+
+  <div class="code">
+.static {
+  position: static;
+  top: 30px;
+  left: 40px;
+}
+  </div>
+
+  <div class="note">
+    ✔ 기본 position 값입니다.<br>
+    ✔ top, left 값을 적용해도 움직이지 않습니다.
+  </div>
+
+  <h3>static 흐름 비교</h3>
+
+  <div>
+    <div class="flow-box flow1">BOX1</div>
+    <div class="flow-box flow2 static">BOX2</div>
+    <div class="flow-box flow3">BOX3</div>
+  </div>
+
+  <p>
+    BOX2는 top, left를 적용해도 이동하지 않습니다.
+  </p>
+
+
+  <!-- RELATIVE -->
+  <h2>2. relative</h2>
+
+  <div class="code">
+.relative {
+  position: relative;
+  top: 30px;
+  left: 40px;
+}
+  </div>
+
+  <div class="note">
+    ✔ 원래 자리 공간은 그대로 유지됩니다.<br>
+    ✔ 현재 위치 기준으로 이동합니다.
+  </div>
+
+  <h3>relative 흐름 비교</h3>
+
+  <div>
+    <div class="flow-box flow1">BOX1</div>
+    <div class="flow-box flow2 relative">BOX2</div>
+    <div class="flow-box flow3">BOX3</div>
+  </div>
+
+  <p>
+    BOX2가 이동했지만 원래 공간은 유지되어 있습니다.
+  </p>
+
+
+  <!-- ABSOLUTE -->
+  <h2>3. absolute</h2>
+
+  <div class="code">
+.absolute {
+  position: absolute;
+  top: 30px;
+  left: 140px;
+}
+  </div>
+
+  <div class="note">
+    ✔ 부모(relative) 기준으로 위치합니다.<br>
+    ✔ 원래 공간이 사라져 다른 요소들이 빈자리를 채웁니다.
+  </div>
+
+  <h3>absolute 흐름 비교</h3>
+
+  <div class="container absolute-parent">
+    <div class="flow-box flow1">BOX1</div>
+    <div class="flow-box flow2 absolute">BOX2</div>
+    <div class="flow-box flow3">BOX3</div>
+  </div>
+
+  <p>
+    BOX2가 문서 흐름에서 제거되어 BOX3가 앞으로 당겨집니다.
+  </p>
+
+</body>
+</html>
