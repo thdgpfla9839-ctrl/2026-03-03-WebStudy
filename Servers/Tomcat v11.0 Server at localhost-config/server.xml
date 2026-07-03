@@ -136,17 +136,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="JSPBasicProject_7" path="/JSPBasicProject_7" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject_7">
-      <!--  Connection Pool 하기 위한 준비 -->
-         <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxwait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@Localhost:1521:XE" username="hr"/>
-      </Context>
-      <Context docBase="JSPBasicProject_8" path="/JSPBasicProject_8" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject_8">
-            <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxwait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@Localhost:1521:XE" username="hr"/>
       
-      </Context>
-      <Context docBase="JSPMiddleProject_5" path="/JSPMiddleProject_5" reloadable="true" source="org.eclipse.jst.jee.server:JSPMiddleProject_5">
-          <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxwait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@Localhost:1521:XE" username="hr"/> 
-      </Context>
+      
+      
       </Host>
     </Engine>
   </Service>
