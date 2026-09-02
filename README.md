@@ -6,7 +6,7 @@
 - [x] JavaScript · jQuery · Ajax
 - [x] JSP 기초 (문법 · 내장객체)
 - [x] JSP MVC
-- [ ] Vue.js
+- [x] Vue.js
 - [ ] 배포 (AWS · 톰캣)
 
 > 아래 각 항목을 클릭하면 상세 내용이 펼쳐집니다.
@@ -516,5 +516,129 @@ public class ListModel {
 
 > MyBatis는 XML과 어노테이션 두 가지 방식으로 코딩할 수 있다.
 > DispatcherServlet은 스프링에서 제공하는 컨트롤러로, 지금 만든 Controller.java와 같은 역할을 한다.
+
+</details>
+
+<details>
+<summary><b>Vue.js</b></summary>
+
+### 1. Vue를 사용하는 이유
+
+Ajax는 HTML을 문자열로 만들어서 직접 붙여야 해서 소스가 길고 복잡해진다.
+Vue는 실제 HTML 태그를 직접 제어하는 방식이라 소스가 훨씬 간결해진다.
+
+| 방식 | HTML 처리 방식 |
+|---|---|
+| JSP / jQuery | HTML 문자열을 만들어서 첨부 (`html += '<div>...'`) |
+| Vue / Thymeleaf | 실제 HTML을 직접 제어 |
+
+### 2. MVVM 구조
+
+| 역할 | 담당 |
+|---|---|
+| **M**odel | 데이터 저장 (VO) |
+| **V**iew | HTML 화면 |
+| **V**iewModel | 데이터 변경 시 HTML에 자동 반영 (양방향 통신) |
+
+> Vue의 핵심은 `data()`에 설정된 변수가 바뀌면 HTML이 자동으로 갱신된다는 것.
+
+### 3. 기본 구조
+
+```javascript
+// CDN으로 불러오기
+// <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+let app = Vue.createApp({
+    data() {
+        return {
+            msg: ''   // HTML에서 {{msg}}로 출력
+        }
+    },
+    mounted() {
+        // 화면 로드 시 자동 실행 (jQuery의 $(function(){})과 같음)
+        this.msg = "Hello Vue3"
+    },
+    methods: {
+        // 이벤트 처리 함수
+    },
+    computed: {
+        // 계산된 값 (예: 천단위 콤마 toLocaleString())
+    }
+}).mount('#app')  // 적용할 HTML 영역 지정
+```
+
+```html
+<!-- HTML 쪽 -->
+<div id="app">
+    <input type="text" v-model="msg">  <!-- 입력값 ↔ data 양방향 연결 -->
+    <div>{{msg}}</div>                 <!-- data 값 출력 -->
+</div>
+```
+
+### 4. 생명주기 함수
+
+```javascript
+beforeCreate()  // Vue 객체 생성 전
+created()       // Vue 객체 생성 완료
+beforeMount()   // 가상돔에 올라가기 전
+mounted()       // 가상돔에 HTML 저장 완료 ← 서버에서 데이터 읽어올 때 여기서 시작 *****
+beforeUpdate()  // 데이터 갱신 전
+updated()       // 데이터 갱신 완료 ← 이벤트 발생 시 ******
+beforeUnmount() // 가상돔 해제 전
+unmounted()     // 가상돔 해제 완료
+```
+
+> `mounted()`는 jQuery의 `$(function(){})`, 자바의 `onload`와 같은 역할.
+
+### 5. 디렉티브 (v- 명령어)
+
+```html
+<!-- 데이터 바인딩 -->
+<input v-model="msg">           <!-- 입력값 ↔ data 양방향 연결 -->
+<img v-bind:src="imgUrl">       <!-- 속성에 data 값 연결 (:src로 줄여 쓸 수 있음) -->
+<div>{{msg}}</div>              <!-- data 값 출력 -->
+
+<!-- 조건문 -->
+<div v-if="type===1">한식</div>
+<div v-else-if="type===2">양식</div>
+<div v-else>기타</div>
+
+<!-- 반복문 -->
+<tr v-for="vo in movies">
+    <td>{{vo.movieNm}}</td>
+</tr>
+
+<!-- 이벤트 -->
+<button v-on:click="select(1)">한식</button>
+<button @click="select(1)">한식</button>   <!-- v-on: 생략 가능 -->
+```
+
+> `v-for`와 `v-if`는 동시에 사용 불가.
+
+### 6. Axios로 서버 연결
+
+Ajax의 `$.ajax()`를 Vue에서는 Axios로 대체한다.
+
+```javascript
+// CDN: <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+// Ajax 방식
+$.ajax({
+    type: 'get',
+    url: 'list.do',
+    data: { no: 1 },
+    success: function(response) { ... }
+})
+
+// Axios 방식 (Vue에서 사용)
+axios.get('list.do', {
+    params: { no: this.no }
+}).then(response => {
+    this.movies = response.data  // JSON 파싱 자동 처리
+})
+```
+
+> Axios는 `JSON.parse()` 없이 자동으로 파싱해준다.
+> 변수명에 `_`(언더바)를 쓰면 config 오류가 발생할 수 있으니 주의.
 
 </details>
