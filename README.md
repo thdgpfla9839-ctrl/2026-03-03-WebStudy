@@ -1,10 +1,9 @@
-# 2026-03-03-WebStudy
 # 🌐 Web 스터디 정리
 
 ## 📌 목차
 
 - [x] HTML · CSS 기초
-- [ ] JavaScript 기초
+- [x] JavaScript · jQuery · Ajax
 - [ ] JSP 기초 (문법 · 내장객체)
 - [ ] JSP MVC
 - [ ] Vue.js
@@ -147,6 +146,110 @@
 .text-center { text-align: center; }  /* 가운데 정렬 */
 p { white-space: pre-wrap; }        /* 자동 줄바꿈 */
 div { background-size: cover; }     /* 이미지가 잘리지 않게 배경 채우기 */
+```
+
+</details>
+
+<details>
+<summary><b>JavaScript · jQuery · Ajax</b></summary>
+
+### 1. 자바스크립트 자료형 (데이터 타입)
+
+변수 안에 어떤 종류의 데이터가 들어있는지를 나타내는 것.
+
+```javascript
+let age = 20;          // 20 → 숫자
+let name = "김기기";     // 김기기 → 문자
+let isLogin = true;    // true → 참/거짓
+```
+
+> 자바에서는 변수를 만들 때 자료형을 먼저 적지만(`int age = 20;`), **자바스크립트에서는 자료형을 안 적는다.** 값을 보고 자료형을 자동으로 판단해준다.
+
+| 자료형 | 특징 |
+|---|---|
+| Number(숫자) | 자바와 다르게 int, double, float, long 구분 없이 전부 `Number` |
+| String(문자열) | `" "` 또는 `' '`로 작성. 문자와 문자열을 구분하지 않음 |
+| Boolean | `true` / `false` |
+
+### 2. jQuery · Ajax
+
+**Ajax**: 페이지 전체를 새로고침하지 않고, 서버와 데이터만 주고받아 화면 일부만 갱신하는 방식(비동기 통신). 게시판 목록, 페이지 이동처럼 화면 일부만 바뀌는 곳에 사용한다.
+
+> 보안이 필요한 소스는 자바스크립트 파일로 따로 빼서 작성하면, 실행 시 페이지 소스에 코드가 안 보인다. 또 중복되는 코드는 함수로 따로 만들어서 반복 코드를 제거한다.
+
+**Ajax 기본 구조**
+
+```javascript
+function dataRecv(page) {
+    $.ajax({
+        type: 'post',              // 전송 방식 (post/get)
+        url: 'list_ajax.do',       // 요청 보낼 서버 주소
+        data: { "page": page },    // 서버로 보낼 데이터
+        success: function(json) {  // 요청 성공 시 자동 호출(callback), 결과값을 매개변수로 받음
+            console.log(json)      // 서버가 보낸 원본(문자열) 확인
+            json = JSON.parse(json)  // 문자열 → 배열/객체로 변환
+            console.log(json)      // 변환 후 배열 형태로 들어옴
+            foodPrint(json)        // 받은 데이터를 화면에 출력하는 함수 호출
+        }
+    })
+}
+```
+
+> `success`는 서버 응답이 오면 자동으로 호출되는 콜백 함수다. 서버가 보낸 값은 처음엔 문자열이라 `JSON.parse()`로 배열/객체로 바꿔야 자바스크립트에서 다룰 수 있다.
+
+**받은 데이터를 화면에 그리기 (jQuery)**
+
+```javascript
+function foodPrint(json) {
+    let html = ''
+    json.forEach((food) => {           // 배열을 하나씩 순회하며 HTML 문자열 조립
+        html += '<a href="#">'
+              + '<div class="col-sm-3">'
+              + '<img src="' + food.poster + '">'
+              + '<p>' + food.name + '</p>'
+              + '</div>'
+              + '</a>'
+    })
+    $('#print').html(html)             // id가 print인 요소 안에 완성된 html을 넣음
+}
+```
+
+| 문법 | 의미 |
+|---|---|
+| `$('#print')` | id가 `print`인 요소를 선택 (CSS 아이디 선택자와 동일) |
+| `.html(내용)` | 선택한 요소 안의 HTML을 통째로 교체 |
+| `json.forEach((food) => { })` | 배열의 각 요소를 하나씩 꺼내서 처리 |
+
+**페이지네이션 예시 — 서버가 준 페이지 정보로 페이지 버튼 만들기**
+
+```javascript
+let curpage   = json[0].curpage
+let totalpage = json[0].totalpage
+let startPage = json[0].startPage
+let endPage   = json[0].endPage
+
+let pagePrint = '<ul class="pagination">'
+if (startPage > 1) {
+    pagePrint += '<li><a class="link" onclick="prev(' + (startPage - 1) + ')">&laquo;</a></li>'
+}
+for (let i = startPage; i <= endPage; i++) {
+    pagePrint += '<li><a class="link" onclick="change(' + i + ')">' + i + '</a></li>'
+}
+if (endPage < totalpage) {
+    pagePrint += '<li><a class="link" onclick="next(' + (endPage + 1) + ')">&raquo;</a></li>'
+}
+pagePrint += '</ul>'
+$('#pagination').html(pagePrint)
+```
+
+> `list.jsp`에서 `<c:forEach>`로 만들던 페이지 목록을, Ajax 방식에서는 자바스크립트 `for`문으로 만들어서 화면에 넣는다. 이전(prev)·다음(next)·특정 페이지(change) 버튼은 모두 같은 `dataRecv(page)` 함수를 호출해서 중복 코드를 제거했다.
+
+**window.onload — 페이지 로드 시 자동 실행**
+
+```javascript
+window.onload = () => {
+    dataRecv(1)    // 화면이 처음 열리면 1페이지 데이터를 자동으로 불러옴
+}
 ```
 
 </details>
