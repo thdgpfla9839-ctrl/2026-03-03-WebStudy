@@ -4,7 +4,7 @@
 
 - [x] HTML · CSS 기초
 - [x] JavaScript · jQuery · Ajax
-- [ ] JSP 기초 (문법 · 내장객체)
+- [x] JSP 기초 (문법 · 내장객체)
 - [ ] JSP MVC
 - [ ] Vue.js
 - [ ] 배포 (AWS · 톰캣)
@@ -250,6 +250,144 @@ $('#pagination').html(pagePrint)
 window.onload = () => {
     dataRecv(1)    // 화면이 처음 열리면 1페이지 데이터를 자동으로 불러옴
 }
+```
+
+</details>
+
+<details>
+<summary><b>JSP 기초 (문법 · 내장객체 · 상태관리 · JSTL/EL)</b></summary>
+
+### 1. Servlet vs JSP
+
+| 구분 | Servlet | JSP |
+|---|---|---|
+| 중심 | 자바 중심 | HTML 중심 |
+| 장점 | 소스가 노출되지 않음(보안), 자바 호환성·유지보수·확장성이 좋음 | 서블릿의 단점 보완, 수정 후 바로 실행 가능, 소스가 짧아짐, CSS·JS 바로 사용 가능 |
+| 단점 | 수정 시마다 컴파일 후 톰캣에 올려야 함, 소스가 길어짐, CSS·JS 처리가 어려움 | 소스가 노출됨, 확장성이 안 좋음 |
+
+> 최근 경향: 보안이나 로직이 필요한 경우엔 서블릿, 화면 출력은 JSP를 사용한다.
+
+**GET vs POST**
+
+| 구분 | GET | POST |
+|---|---|---|
+| 데이터 전송 | URL 뒤에 `?키=값` 형태로 노출 | 내부적으로 감춰서 전송 |
+| 사용 | 간단한 검색어, 상세보기 (`<a>` 태그) | 보안이 필요한 경우, 데이터 전송이 많은 경우, 파일 업로드 시 |
+| `<form>` | GET/POST 모두 설정 가능 | - |
+
+> GET과 POST 비교는 면접 단골 질문이다.
+
+### 2. JSP 동작 과정
+
+```plain text
+1. 브라우저 URL로 요청 (URL?키=값 형태로 데이터 전송 가능)
+2. 웹서버에서 요청을 받음
+   HTML/CSS/JSON/XML → 웹서버 자체에서 처리
+   JSP/Servlet → 톰캣으로 전송
+3. 톰캣이 JSP를 자바로 변환 → 컴파일 → 실행
+   a.jsp → a_jsp.java → a_jsp.class → out.write("<html>") → 출력버퍼에 HTML 저장
+4. 출력버퍼에 저장된 HTML을 브라우저가 읽어서 출력
+```
+
+**서블릿 생명주기**
+
+```plain text
+init()    : 변수 초기화, DB 연결 준비, 설정파일 읽기 (한 번만 수행)
+   |
+service() : 클라이언트 요청 시마다 실행 (GET/POST 동시 처리)
+   |        → doGet()  : GET 방식 요청 시 화면 출력
+   |        → doPost() : POST 방식 요청 시 사용자 요청 처리
+   |
+destroy() : 서버 종료, 새로고침, 화면 이동 시 자동으로 서블릿 제거
+```
+
+### 3. JSP 기본 문법 (스크립트릿)
+
+```plain text
+<%! %>   : 선언문 — 멤버변수/메소드 선언, 클래스 영역. 사용 빈도가 거의 없음
+<% %>    : 스크립트릿 — 자바 소스(지역변수, 연산자, 메소드 호출), _jspService() 메소드 안에 위치
+<%= %>   : 표현식 — 브라우저에 출력
+<%-- --%>: JSP 주석 — 번역이 안 되는 영역(소스 보기 시 안 보임). HTML 주석은 그대로 출력됨
+```
+
+> JSP에서의 자바 코딩은 `<% %>` 영역을 벗어나면 일반 텍스트로 인식된다.
+
+```jsp
+<%!
+    int p = 1;
+    public int add(int a, int b) {
+        return a + b;
+    }
+%>
+<body>
+  <%
+      int a = 10;
+      int b = 20;
+      int c = add(a, b);
+  %>
+  <%= c %> <!-- 30 출력 -->
+</body>
+```
+
+**지시자 (Directive)**
+
+| 지시자 | 형식 | 용도 |
+|---|---|---|
+| `page` | `<%@ page language="java" contentType="text/html; charset=UTF-8"%>` | 언어·인코딩·import 설정 |
+| `include` | `<%@ include file="header.jsp"%>` | 다른 파일을 현재 파일에 포함 |
+| `taglib` | `<%@ taglib prefix="c" uri="jakarta.tags.core"%>` | JSTL 태그 라이브러리 사용 선언 |
+
+### 4. 내장 객체 (총 9개)
+
+JSP에서 미리 객체가 생성되어 있어 별도 선언 없이 바로 사용 가능하다.
+
+| 내장 객체 | 역할 |
+|---|---|
+| `request` | 클라이언트의 요청 정보(전송값, 헤더 등) |
+| `response` | 서버의 응답 처리 (리다이렉트 등) |
+| `session` | 로그인 상태처럼 브라우저 종료 시까지 유지되는 데이터 저장 |
+| `pageContext` | 현재 페이지 범위의 데이터 |
+| `application` | 서버 전체(모든 사용자 공유) 범위의 데이터 |
+| `out` | 브라우저에 출력 (`out.write()`) |
+| `config` | 서블릿 설정 정보 |
+| `exception` | 예외 처리 |
+| `page` | 현재 서블릿 자신 (자바의 `this`에 해당) |
+
+### 5. 상태 관리 — Session vs Cookie
+
+로그인처럼 여러 페이지에 걸쳐 데이터를 유지해야 할 때 사용한다.
+
+| 구분 | Session | Cookie |
+|---|---|---|
+| 저장 위치 | 서버 | 클라이언트(브라우저) |
+| 보안 | 좋음 | 나쁨(탈취 가능) |
+| 유지 기간 | 브라우저 종료 시까지 | 직접 설정 가능 (만료 시간 지정) |
+| 용량 | 제한 없음 | 4KB 제한 |
+| 사용 예 | 로그인 정보, 장바구니 | 자동 로그인, 최근 본 상품, 퀵메뉴 고정 |
+
+> 쿠키 vs 세션 비교는 면접 단골 질문이다.
+
+### 6. JSTL / EL
+
+**EL(Expression Language)**: `${ }` — JSP의 `<%= %>` 표현식을 더 간결하게 쓰는 방법. request·session 등 내장객체의 값을 바로 꺼내 출력할 수 있다.
+
+**JSTL(JSP Standard Tag Library)**: `<c:forEach>`, `<c:if>` 등 — JSP 안의 자바 제어문(`for`, `if`)을 HTML 태그처럼 쓸 수 있게 만든 라이브러리. 소스가 간결해지고 HTML과 자바 코드가 섞이지 않는다.
+
+```jsp
+<!-- 옛날 방식(스크립트릿) -->
+<%
+    for(int i = 2; i <= 9; i++) {
+%>
+    <th><%= i %>단</th>
+<%
+    }
+%>
+
+<!-- 최근 방식(JSTL + EL) -->
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<c:forEach var="i" begin="2" end="9">
+    <th>${i}단</th>
+</c:forEach>
 ```
 
 </details>
