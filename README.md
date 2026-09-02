@@ -5,7 +5,7 @@
 - [x] HTML · CSS 기초
 - [x] JavaScript · jQuery · Ajax
 - [x] JSP 기초 (문법 · 내장객체)
-- [ ] JSP MVC
+- [x] JSP MVC
 - [ ] Vue.js
 - [ ] 배포 (AWS · 톰캣)
 
@@ -389,5 +389,132 @@ JSP에서 미리 객체가 생성되어 있어 별도 선언 없이 바로 사�
     <th>${i}단</th>
 </c:forEach>
 ```
+
+</details>
+
+<details>
+<summary><b>JSP MVC</b></summary>
+
+### 1. MVC 패턴이란
+
+JSP 안에 자바 코드가 섞이면 유지보수가 어려워진다.
+역할을 3가지로 나눠서 관리하는 구조가 MVC 패턴이다.
+
+| 역할 | 담당 | 비유 |
+|---|---|---|
+| **M**odel | 자바 클래스 (비즈니스 로직, DB 처리) | 주방 |
+| **V**iew | JSP (화면 출력) | 손님 |
+| **C**ontroller | Servlet (요청 받기·분기·결과 전달) | 서빙 |
+
+> MVC에서는 구조를 익히는 게 포인트.
+> JSP 안에 있던 `<% BoardModel model = new BoardModel(); model.boardDelete(request, response); %>` 같은 자바 코드가 컨트롤러로 이동하면서 JSP에서 자바 코드가 사라진다.
+
+### 2. MVC 동작 흐름
+
+```plain text
+브라우저 요청 (?cmd=list)
+      ↓
+Controller (Servlet)
+  1. 요청값 읽기       → request.getParameter("cmd")
+  2. model 클래스 찾기 → cmd에 맞는 Model 선택
+  3. model 실행       → model.execute(request)
+  4. JSP 찾기         → jsp = "view/list.jsp"
+  5. 결과값 전달 후 JSP로 이동 → rd.forward(request, response)
+      ↓
+View (JSP)
+  → request.getAttribute()로 결과값 읽어서 화면 출력
+```
+
+### 3. 패키지 구조
+
+```
+com.sist
+ ├── controller
+ │    └── Controller.java   ← Servlet (요청 분기)
+ ├── model
+ │    ├── ListModel.java
+ │    ├── DetailModel.java
+ │    ├── InsertModel.java
+ │    ├── UpdateModel.java
+ │    └── DeleteModel.java
+ └── (dao, vo는 model 역할에 포함)
+
+webapp
+ └── view
+      ├── list.jsp
+      ├── detail.jsp
+      ├── insert.jsp
+      ├── update.jsp
+      └── delete.jsp
+```
+
+> JSP 파일을 만들면 그에 해당하는 Model 자바 클래스도 똑같이 만들어준다.
+> 실행은 컨트롤러 파일에서만 한다 (`/Controller?cmd=list`).
+
+### 4. Controller.java 핵심 코드
+
+```java
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // 1. 요청값 읽기
+        String cmd = request.getParameter("cmd");
+        if (cmd == null) cmd = "list";
+
+        // 2. cmd에 맞는 model 찾기 + 3. model 실행
+        String jsp = "";
+        if (cmd.equals("list")) {
+            ListModel model = new ListModel();
+            model.execute(request);
+            jsp = "view/list.jsp";
+        } else if (cmd.equals("detail")) {
+            DetailModel model = new DetailModel();
+            model.execute(request);
+            jsp = "view/detail.jsp";
+        }
+        // insert / update / delete 동일한 패턴으로 추가
+
+        // 4. 결과값을 request에 담아서 JSP로 이동
+        RequestDispatcher rd = request.getRequestDispatcher(jsp);
+        rd.forward(request, response);
+    }
+}
+```
+
+### 5. Model 클래스 구조
+
+```java
+public class ListModel {
+    public void execute(HttpServletRequest request) {
+        // DB에서 데이터 가져오기
+        String msg = "게시판 목록";
+        // request에 결과값 담기 → JSP에서 꺼내 씀
+        request.setAttribute("msg", msg);
+    }
+}
+```
+
+> Model 클래스는 요청값을 직접 읽지 못한다. Controller가 `request`를 넘겨주면 Model이 받아서 처리한다.
+> Model 클래스는 독립되면 안 되기 때문에 인터페이스를 이용해 하나로 묶는다 → if문 없이 처리 가능.
+
+### 6. MyBatis 연동 (Model 안에서)
+
+```xml
+<!-- XML 방식 -->
+<select id="goodsList" resultType="com.sist.vo.GoodsVO">
+    SELECT * FROM goods
+    OFFSET #{start} ROWS FETCH NEXT 10 ROWS ONLY
+</select>
+```
+
+- MyBatis는 컬럼명과 VO 변수명이 반드시 일치해야 한다.
+- SQL의 `?` 대신 `#{변수명}` 형태로 작성한다.
+- XML의 `id`: 구분자 / `resultType`: 결과값을 담을 클래스
+
+> MyBatis는 XML과 어노테이션 두 가지 방식으로 코딩할 수 있다.
+> DispatcherServlet은 스프링에서 제공하는 컨트롤러로, 지금 만든 Controller.java와 같은 역할을 한다.
 
 </details>
