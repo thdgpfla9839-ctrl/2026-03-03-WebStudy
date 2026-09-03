@@ -7,7 +7,7 @@
 - [x] JSP 기초 (문법 · 내장객체)
 - [x] JSP MVC
 - [x] Vue.js
-- [ ] 배포 (AWS · 톰캣)
+- [x] 배포 (Ubuntu · Tomcat)
 
 > 아래 각 항목을 클릭하면 상세 내용이 펼쳐집니다.
 
@@ -640,5 +640,127 @@ axios.get('list.do', {
 
 > Axios는 `JSON.parse()` 없이 자동으로 파싱해준다.
 > 변수명에 `_`(언더바)를 쓰면 config 오류가 발생할 수 있으니 주의.
+
+</details>
+
+<details>
+<summary><b>배포 (Ubuntu · Tomcat)</b></summary>
+
+### 1. 배포 전체 흐름
+
+```plain text
+이클립스에서 WAR 파일 만들기
+      ↓
+WinSCP로 우분투 서버에 WAR 파일 전송
+      ↓
+Putty(터미널)에서 WAR 파일을 톰캣 webapps로 이동
+      ↓
+톰캣 재시작
+      ↓
+브라우저에서 접속 확인 (http://localhost/프로젝트명)
+```
+
+---
+
+### 2. 우분투 환경 세팅 (최초 1회)
+
+**① 자바 설치**
+
+```bash
+sudo apt install openjdk-21-jdk -y
+
+# 환경변수 설정
+sudo nano ./.bashrc
+# 맨 아래에 추가
+export JAVA_HOME=/usr/...(경로 복붙)
+export PATH=$PATH:$JAVA_HOME/bin
+
+source ./.bashrc  # 설정 적용
+
+# 설치 확인
+java -version
+javac
+```
+
+**② 톰캣 설치**
+
+```bash
+# 아파치 사이트에서 tomcat 11버전 tar.gz 링크 복사 후
+sudo wget (링크 붙여넣기)
+
+sudo tar -xvf apache-tomcat-11.0.23.tar.gz   # 압축 풀기
+cd apache-tomcat-11.0.23/
+
+sudo chmod 755 bin conf webapps   # 권한 설정
+
+# 포트번호 80으로 변경
+cd conf
+sudo nano server.xml
+# <Connector 부분에서 8080 → 80으로 변경 후 저장 (Ctrl+O → Ctrl+X)
+```
+
+---
+
+### 3. WAR 파일 배포하기
+
+**① 이클립스에서 WAR 파일 만들기**
+
+```
+프로젝트 우클릭 → Export → WAR 파일로 저장
+```
+
+**② WinSCP로 서버에 올리기**
+
+```
+WinSCP 접속 → webapps 폴더에 WAR 파일 직접 업로드
+```
+
+**③ Putty에서 톰캣 실행**
+
+```bash
+cd apache-tomcat-11.0.23
+
+# 기존 파일 있으면 삭제
+cd webapps
+sudo rm -rf 프로젝트명*
+cd ..
+
+sudo ./bin/shutdown.sh   # 톰캣 종료
+sudo ./bin/startup.sh    # 톰캣 시작
+```
+
+**④ 브라우저에서 확인**
+
+```
+http://localhost/프로젝트명   (우분투 파이어폭스에서 확인)
+```
+
+---
+
+### 4. 자주 쓰는 명령어 정리
+
+| 명령어 | 역할 |
+|---|---|
+| `ls -al` | 숨긴 파일 포함 전체 목록 보기 |
+| `pwd` | 현재 경로 확인 |
+| `cd ..` | 상위 폴더로 이동 |
+| `clear` | 화면 초기화 |
+| `sudo rm -rf 파일명*` | 관련 파일 전부 삭제 |
+| `sudo chmod 755 *` | 권한 허용 |
+| `sudo jar -cvf 프로젝트명.war .` | WAR 파일 생성 |
+| `sudo jar -xvf 파일명.war` | WAR 파일 압축 해제 |
+| `sudo ./bin/startup.sh` | 톰캣 시작 |
+| `sudo ./bin/shutdown.sh` | 톰캣 종료 |
+| `ifconfig` | 우분투 IP 주소 확인 |
+
+---
+
+### 5. 프로그램 종료 순서
+
+```plain text
+WinSCP  → X 클릭
+Putty   → exit
+우분투  → sudo ./bin/shutdown.sh → exit → 파워 종료 → VirtualBox 종료
+```
 
 </details>
